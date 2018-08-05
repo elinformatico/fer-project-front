@@ -4,11 +4,8 @@
     <p>Introducir todos los datos necesarios para registrar gasolina</p>
   </div>
 </div>
-  
-  <div class="container">    
-
+  <div class="container">
     <form name='frmGasolina' novalidate>
-        
         <div class="form-group">
             <label class="control-label" for="selectedCar">Vehículo</label>
             <select class="form-control" id="selectedCar" ng-change="onChangeCar(selectedCar)" ng-model='selectedCar' required>

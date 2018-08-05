@@ -1,13 +1,46 @@
 <?php
     $pages = [
         [
+            "name"              => "login",
+            "menuLabel"         => "Login",
+            "angularController" => "noController",
+            "nameSection"       => "Iniciar Sesion",
+            "showInMenu"        => "no",
+            "permissions"       => [
+                "user",
+                "admin",
+            ]
+        ],
+         [
+            "name"              => "logout",
+            "menuLabel"         => "Logout",
+            "angularController" => "noController",
+            "nameSection"       => "Cerrar Session",
+            "showInMenu"        => "no",
+            "permissions"       => [
+                "user",
+                "admin",
+            ]
+        ],
+        [
+            "name"              => "inicio",
+            "menuLabel"         => "Inicio",
+            "angularController" => "noController",
+            "nameSection"       => "Panel Principal",
+            "showInMenu"        => "yes",
+            "permissions"       => [
+                "user",
+                "admin",
+            ]
+        ],
+        [
             "name"              => "gasolina",
             "menuLabel"         => "Gasolina",
             "angularController" => "registroGasolinaCtrl",
             "nameSection"       => "Ejemplo Funcional",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "user",
+                #"user",
                 "admin",
             ]
         ],
@@ -76,13 +109,23 @@
         ],
         [
             "name"              => "404",
-            "menuLabel"         => "Not Found Page",
-            "angularController" => "404NotFoundCtrl",
+            "menuLabel"         => "",
+            "angularController" => "noController",
             "nameSection"       => "No se encontro la Pagina",
             "showInMenu"        => "no",
             "permissions"       => [
                 "user",
                 "admin",
+            ]
+        ],
+        [
+            "name"              => "restringido",
+            "menuLabel"         => "",
+            "angularController" => "noController",
+            "nameSection"       => "Acceso Restringido",
+            "showInMenu"        => "no",
+            "permissions"       => [
+                "user",
             ]
         ]
     ];

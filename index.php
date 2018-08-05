@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	# Include Config Data
     include_once 'core/config.php';
 

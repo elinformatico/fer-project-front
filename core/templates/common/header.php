@@ -35,13 +35,20 @@
   <!-- Modules & Angular Controllers -->
   <!-- ================================================================================= -->
   <script src="<?php echo $pageData['app_base']; ?>/js/webservices/apiFactoryRest.js"></script>
-  <script src="<?php echo $pageData['app_base']; ?>/js/controllers/<?php echo $pageData['angularController']; ?>.js"></script>
+  <?php if($pageData['angularController'] != "noController") : ?>
+        <script src="<?php echo $pageData['app_base']; ?>/js/controllers/<?php echo $pageData['angularController']; ?>.js"></script>
+  <?php endif; ?>
   <!-- ================================================================================= -->
-
   <link rel="stylesheet" type="text/css" href="<?php echo $pageData['app_base']; ?>/css/style.css">
 
 </head>
-<body ng-controller="<?php echo $pageData['angularController']; ?>">
+
+
+<?php if($pageData['angularController'] != "noController") : ?>
+    <body ng-controller="<?php echo $pageData['angularController']; ?>">
+<?php else: ?>
+    <body>
+<?php endif; ?>
 
 <!-- Navigation Menu -->
   <nav class="navbar navbar-inverse">
@@ -61,7 +68,11 @@
           ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <?php if (!isSessionActive()) : ?>
+              <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <?php else : ?>
+              <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>
