@@ -5,7 +5,7 @@
     PRODUCTION_SERVER  . ROOT_PRODUCTION;       # PRODUCTION
     
     $server['app_base'] = $app_base;
-    $server['server'] = DEVELOPMENT_SERVER;
+    $server['server'] = strstr($_SERVER['HTTP_HOST'], 'localhost') ? DEVELOPMENT_SERVER : PRODUCTION_SERVER;
     $server['root'] = strstr($_SERVER['HTTP_HOST'], 'localhost') ? ROOT_DEVELOPMENT : ROOT_PRODUCTION;;
 
     $section  = str_replace($server['root'] . "/section/", "", $_SERVER['REDIRECT_URL']);
