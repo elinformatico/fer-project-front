@@ -5,7 +5,7 @@
   </div>
 </div>
   <div class="container">
-    <form name='frmGasolina' novalidate>
+    <form name='frmUsuarios' novalidate>
         <div class="form-group">
             <label class="text-label" for="nombre">Nombre(s)</label>
             <input type="number" class="form-control" id="nombre" ng-model='nombre' required>
@@ -34,6 +34,11 @@
         <div class="form-group">
             <label class="control-label" for="password">Contraseña</label>
             <input type="password" class="form-control" id="password" ng-model='password' required>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="rePassword">Repetir Contraseña</label>
+            <input type="password" class="form-control" id="rePassword" ng-model='rePassword' required>
         </div>
     
         <div class="form-group">
