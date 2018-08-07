@@ -88,9 +88,9 @@
             ]
         ],
         [
-            "name"              => "administrarUsuarios",
+            "name"              => "usuarios",
             "menuLabel"         => "Usuarios",
-            "angularController" => "administrarUsuariosCtrl",
+            "angularController" => "usuariosCtrl",
             "nameSection"       => "Administrar Usuarios",
             "showInMenu"        => "yes",
             "permissions"       => [
