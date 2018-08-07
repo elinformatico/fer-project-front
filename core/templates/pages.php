@@ -38,7 +38,7 @@
             "menuLabel"         => "Gasolina",
             "angularController" => "registroGasolinaCtrl",
             "nameSection"       => "Ejemplo Funcional",
-            "showInMenu"        => "yes",
+            "showInMenu"        => "no",
             "permissions"       => [
                 #"user",
                 "admin",
