@@ -20,7 +20,12 @@
     		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
   		</div>
   		<button type="submit" class="btn btn-primary btn-lg">INICIAR SESIÓN</button>
-	</form>
+
+      <?php if(isset($_REQUEST['error'])) : ?>
+          <div class="alert alert-danger" role="alert" style="margin-top: 20px;"><?php echo $_REQUEST['error']; ?></div>
+      <?php endif; ?>
+
+  </form>
 </div>
 <div style="height: 50px;"> </div>
 <!-- Don't close the <body> and <html>  tags, these tags are already include by the PHP System -->

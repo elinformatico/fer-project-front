@@ -128,8 +128,9 @@
         $splitData = explode("|", $token);
         $returnDataUser = [
             "userName"      => base64_decode($splitData[0]),
-            "role"          => base64_decode($splitData[1]),
-            "dateExpired"   => base64_decode($splitData[2]),
+            "fullName"      => base64_decode($splitData[1]),
+            "role"          => base64_decode($splitData[2]),
+            "dateExpired"   => base64_decode($splitData[3]),
         ];
         return $returnDataUser;
     }
@@ -163,14 +164,15 @@
                     $dataUser = getAuthUserData($response->token);
 
                     $_SESSION["userName"]       = $dataUser["userName"];
+                    $_SESSION["fullName"]       = $dataUser["fullName"];
                     $_SESSION["role"]           = $dataUser["role"];
                     $_SESSION["dateExpired"]    = $dataUser["dateExpired"];
                     $_SESSION["sessionLoaded"]  = "true";
 
-                    e($_SESSION);
                     header("Location: inicio");
 
                 } else {
+                    $_REQUEST['error'] = $response->msg;
                     closeSession();
                 }
             }
