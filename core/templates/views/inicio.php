@@ -1,6 +1,6 @@
 <div class="jumbotron">
   	<div class="container text-center">
-    	<h1>Bienvenido <?php echo $_SESSION["userName"]; ?></h1>
+    	<h1>Bienvenido <?php echo $_SESSION["fullName"]; ?></h1>
   	</div>
 </div>
 </div>
