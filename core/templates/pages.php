@@ -7,8 +7,9 @@
             "nameSection"       => "Iniciar Sesion",
             "showInMenu"        => "no",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
          [
@@ -18,8 +19,9 @@
             "nameSection"       => "Cerrar Session",
             "showInMenu"        => "no",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -29,8 +31,9 @@
             "nameSection"       => "Panel Principal",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -38,7 +41,7 @@
             "menuLabel"         => "Gasolina",
             "angularController" => "registroGasolinaCtrl",
             "nameSection"       => "Ejemplo Funcional",
-            "showInMenu"        => "no",
+            "showInMenu"        => "yes",
             "permissions"       => [
                 #"user",
                 "admin",
@@ -61,8 +64,9 @@
             "nameSection"       => "Administrar Memos",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -72,8 +76,9 @@
             "nameSection"       => "Administrar Oficios",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -104,7 +109,9 @@
             "nameSection"       => "Consultas",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "admin"
+                "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -114,8 +121,9 @@
             "nameSection"       => "No se encontro la Pagina",
             "showInMenu"        => "no",
             "permissions"       => [
-                "user",
                 "admin",
+                "user",
+                "basic",
             ]
         ],
         [
@@ -126,6 +134,7 @@
             "showInMenu"        => "no",
             "permissions"       => [
                 "user",
+                "basic",
             ]
         ]
     ];
