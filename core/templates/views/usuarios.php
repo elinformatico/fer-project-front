@@ -22,15 +22,18 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="nombreDepartamento">Nombre Departamento</label>
-            <input type="text" class="form-control" id="nombreDepartamento" ng-model='nombreDepartamento' required>
-        </div>
-        
-        <div class="form-group">
             <label class="control-label" for="nombreUsuario">Nombre de Usuario</label>
             <input type="text" class="form-control" id="nombreUsuario" ng-model='nombreUsuario' required>
         </div>
 
+        <div class="form-group">
+            <label class="control-label" for="selectedDepartamento">Departamento</label>
+            <select class="form-control" id="selectedDepartamento" ng-change="changeMethod()" ng-model='selectedDepartamento' required>
+                <option value="" selected>-- Selecciona un departamento --</option>
+                <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
+            </select>
+        </div>
+        
         <div class="form-group">
             <label class="control-label" for="password">Contraseña</label>
             <input type="password" class="form-control" id="password" ng-model='password' required>

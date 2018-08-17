@@ -78,5 +78,10 @@ angular.module('mobieApp')
         });
     }
 
+    // ----------- Departamentos -------------
+    dataFactory.getDepartamentos = function(){
+        return $http.get(restUrl + '/get/departamentos');
+    }
+
     return dataFactory;
 }]);

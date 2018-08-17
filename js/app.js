@@ -3,8 +3,8 @@ angular.module('mobieApp', ['ui.bootstrap'])
 
 	// DEVELOPMENT
 	// -----------------------------------------------------------
-	apiRouteDev  : 'http://localhost/uag/mobie.api/public/mobie', 
-	siteRouteDev : 'http://localhost/uag/fnz-project',
+	apiRouteDev  : 'http://localhost/fer/api/public',
+	siteRouteDev : 'http://localhost/fer',
 
 	// PRODUCTION
 	// -----------------------------------------------------------
