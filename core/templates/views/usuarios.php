@@ -8,7 +8,7 @@
     <form name='frmUsuarios' novalidate>
         <div class="form-group">
             <label class="text-label" for="nombre">Nombre(s)</label>
-            <input type="number" class="form-control" id="nombre" ng-model='nombre' required>
+            <input type="text" class="form-control" id="nombre" ng-model='nombre' required>
         </div>
 
         <div class="form-group">
@@ -33,6 +33,21 @@
                 <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
             </select>
         </div>
+         <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model='esJefe' > ¿Este usuario sera Jefe del departamento seleccionado?
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="rolUsuario">Role de Usuario</label>
+            <select class="form-control" id="rolUsuario" ng-model='rolUsuario' required>
+            <option value="" selected>-- Selecciona un Rol de Usuario --</option>
+              <option value="admin" selected>Administrador</option>
+              <option value="user">Usuario N1 [Memos, Oficios, Correspondencia, Consultas]</option>
+              <option value="basic">Usuario N2 [Memos, Oficios, Consultas]</option>
+            </select>
+        </div>
         
         <div class="form-group">
             <label class="control-label" for="password">Contraseña</label>
@@ -42,14 +57,6 @@
         <div class="form-group">
             <label class="control-label" for="rePassword">Repetir Contraseña</label>
             <input type="password" class="form-control" id="rePassword" ng-model='rePassword' required>
-        </div>
-    
-        <div class="form-group">
-            <label class="control-label" for="jefeDepartamento">Jefe departamento</label>
-            <select class="form-control" id="jefeDepartamento" ng-model='jefeDepartamento' required>
-              <option value="magna" selected>Magna</option>
-              <option value="premium">Premium</option>
-            </select>
         </div>
 
         <div class="form-group">

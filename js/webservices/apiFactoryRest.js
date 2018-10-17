@@ -83,5 +83,12 @@ angular.module('mobieApp')
         return $http.get(restUrl + '/get/departamentos');
     }
 
+    dataFactory.guardarUsuario = function(data){
+        return $http.post(restUrl + '/store/usuario', data, {
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transform
+        });
+    }
+
     return dataFactory;
 }]);
