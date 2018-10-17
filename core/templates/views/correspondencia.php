@@ -12,12 +12,23 @@
             <input type="text" class="form-control" id="corrReferencia" ng-model='corrReferencia' required>
         </div>
 
-        <div class="form-group">
-            <label class="text-label" for="corrDependencia">Dependencia:</label>
-            <select class="form-control" id="corrDependencia" ng-model='corrDependencia' required>
-              <option value="magna" selected>Opcion 1</option>
-              <option value="premium">Opcion 2</option>
+        <div class="form-group" ng-hide="nuevaDependencia">
+            <label class="text-label" for="corrSelectedDependencia">Dependencia:</label>
+            <select class="form-control" id="corrSelectedDependencia" ng-model='corrSelectedDependencia' required>
+              <option value="" selected>-- Selecciona una Dependencia existente --</option>
+              <option ng-repeat="dependencia in dependencias" value="{{dependencia.id}}">{{dependencia.nombre}}</option>
             </select>
+        </div>
+
+        <div class="form-group" ng-show="nuevaDependencia">
+            <label class="control-label" for="txtNuevaDependencia">Nueva Dependencia</label>
+            <input type="text" class="form-control" id="txtNuevaDependencia" ng-model='txtNuevaDependencia' required>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model='nuevaDependencia'> <strong> <em>¿No esta la dependencia que buscas? Registra una nueva </em></strong>
+            </label>
         </div>
 
         <div class="form-group">
@@ -26,30 +37,30 @@
         </div>
 
         <div class="form-group">
-            <label class="text-label" for="corrDepartamento">Departamento:</label>
-            <select class="form-control" id="corrDepartamento" ng-model='corrDepartamento' required>
-              <option value="magna" selected>Opcion 1</option>
-              <option value="premium">Opcion 2</option>
+            <label class="control-label" for="corrSelectedDepartamento">Departamento:</label>
+            <select class="form-control" id="corrSelectedDepartamento" ng-model='corrSelectedDepartamento' required>
+                <option value="" selected>-- Selecciona un departamento --</option>
+                <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label class="text-label" for="corrDirigidoA">Dirigido A:</label>
-            <select class="form-control" id="corrDirigidoA" ng-model='corrDirigidoA' required>
-              <option value="magna" selected>Opcion 1</option>
-              <option value="premium">Opcion 2</option>
+            <label class="text-label" for="corrSelectedDirigidoA">Dirigido A:</label>
+            <select class="form-control" id="corrSelectedDirigidoA" ng-model='corrSelectedDirigidoA' required>
+              <option value="" selected>-- Selecciona un Usuario--</option>
+                <option ng-repeat="usuario in usuarios" value="{{usuario.id}}">{{usuario.nombre}} --> [{{usuario.departamento}}]</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="oficiosAsunto">Tiempo Limite de respuesta: 
-                <em ng-model="corrTiempoLimiteRespuesta"></em>
+            <label class="control-label" for="corrTiempoLimiteRespuesta">Tiempo Limite de respuesta: 
+                <em>{{corrTiempoLimiteRespuesta}}</em>
             </label>
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="oficiosObservaciones">Observaciones</label>
-            <textarea class="form-control" rows="3" ng-model="oficiosObservaciones"></textarea>
+            <label class="control-label" for="corrObservaciones">Observaciones</label>
+            <textarea class="form-control" rows="3" ng-model="corrObservaciones"></textarea>
         </div>
         
         <div class="form-group">

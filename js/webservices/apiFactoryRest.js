@@ -90,5 +90,20 @@ angular.module('mobieApp')
         });
     }
 
+    dataFactory.getNombreUsuarios = function() {
+        return $http.get(restUrl + '/get/nombreUsuarios');
+    }
+
+    dataFactory.getDependencias = function() {
+        return $http.get(restUrl + '/get/dependencias');
+    }
+
+    dataFactory.guardarDependencia = function(data){
+        return $http.post(restUrl + '/store/dependencia', data, {
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transform
+        });
+    }
+
     return dataFactory;
 }]);
