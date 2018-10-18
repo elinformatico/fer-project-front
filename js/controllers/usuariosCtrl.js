@@ -12,34 +12,35 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     $scope.apellidoPaterno = "";
     $scope.apellidoMaterno = "";
     $scope.nombreUsuario = "";
-    $scope.esJefe = "";
+    $scope.esJefe = false;
     $scope.rolUsuario = "";
     $scope.password = "";
     $scope.rePassword = "";
+
+    // Nuevo Departamento
+    $scope.nuevoDepartamento = false;
+    $scope.txtNuevoDepartamento = "";
 
     $scope.fn = {
         init : function(){
             this.loadDepartamentos();
         },
         validarFormulario : function(){
-            return ((
-                $scope.nombre != undefined &&
-                $scope.apellidoPaterno != undefined && 
-                $scope.apellidoMaterno != undefined && 
-                $scope.nombreUsuario != undefined && 
-                $scope.rolUsuario != undefined &&
-                $scope.password != undefined &&
-                $scope.rePassword != undefined &&
-                $scope.selectedDepartamento) &&
-
-                $scope.nombre != '' &&
-                $scope.apellidoPaterno != '' && 
-                $scope.apellidoMaterno != '' && 
-                $scope.nombreUsuario != '' && 
-                $scope.rolUsuario != '' &&
-                $scope.password != '' &&
-                $scope.rePassword != '' &&
-                $scope.selectedDepartamento != ''
+            return (
+                ($scope.nombre != undefined && $scope.nombre != '')  &&
+                ($scope.apellidoPaterno != undefined && $scope.apellidoPaterno != '') && 
+                ($scope.apellidoMaterno != undefined && $scope.apellidoMaterno != '') && 
+                ($scope.nombreUsuario != undefined && $scope.nombreUsuario != '') && 
+                ($scope.rolUsuario != undefined && $scope.rolUsuario != '') &&
+                ($scope.esJefe ? 
+                    (
+                        ($scope.nuevoDepartamento ? 
+                            ($scope.txtNuevoDepartamento != undefined && $scope.txtNuevoDepartamento != '') : 
+                            ($scope.selectedDepartamento != undefined && $scope.selectedDepartamento != '') )
+                    ) : 
+                    true ) &&
+                ($scope.password != undefined && $scope.password != '') &&
+                ($scope.rePassword != undefined && $scope.rePassword != '')
             );
         },
         validarPassword : function(password1, password2){
@@ -64,7 +65,10 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
         },
         guardar : function() {
             
+            console.log('Guardando Usuario...');            
             $scope.datos = {
+                nuevoDepartamento : $scope.nuevoDepartamento,
+                txtNuevoDepartamento : $scope.txtNuevoDepartamento,
                 selectedDepartamento : $scope.selectedDepartamento,
                 nombre : $scope.nombre,
                 apellidoPaterno : $scope.apellidoPaterno,
@@ -75,8 +79,8 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 password : $scope.password,
             }
 
-            console.log('Guardar...');
-             if(this.validarFormulario()){
+            if(this.validarFormulario())
+            {
                 if(this.validarPassword($scope.password, $scope.rePassword)){
 
                     // Valida si no existe el nombre de Usuario
@@ -85,6 +89,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                         if(rs.status === 'success'){
                             growlService.notice('Mensaje Sistema', rs.msg);
 
+                            $scope.fn.limpiarCampos();
                     
                         } else if(rs.status === 'error'){
                             growlService.error('Mensaje Sistema', rs.msg);
@@ -93,13 +98,28 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     .error(function(err){
                         growlService.error('Mensaje Sistema', err);
                     });
-           
+        
                 } else {
-                    growlService.warning('Mensaje Sistema', '¡Porfavor verifique la confirmación de su Contraseña!');    
+                    growlService.warning('Mensaje Sistema', '¡Las contraseñas no coinciden, porfavo de verificarlas!');    
                 }
+
             } else {
                 growlService.warning('Mensaje Sistema', '¡Por favor llene todos los campos!');
             }
+        },
+        limpiarCampos : function () {
+
+            $scope.nuevoDepartamento = false;
+            $scope.txtNuevoDepartamento = "";
+            $scope.selectedDepartamento = "";
+            $scope.nombre = "";
+            $scope.apellidoPaterno = "";
+            $scope.apellidoMaterno = "";
+            $scope.nombreUsuario = "";
+            $scope.esJefe = false;
+            $scope.rolUsuario = "";
+            $scope.password = "";
+            $scope.rePassword = "";
         }
     };
     $scope.fn.init();

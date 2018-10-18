@@ -27,26 +27,40 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="selectedDepartamento">Departamento</label>
-            <select class="form-control" id="selectedDepartamento" ng-change="changeMethod()" ng-model='selectedDepartamento' required>
-                <option value="" selected>-- Selecciona un departamento --</option>
-                <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
-            </select>
-        </div>
-         <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model='esJefe' > ¿Este usuario sera Jefe del departamento seleccionado?
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="rolUsuario">Role de Usuario</label>
+            <label class="control-label" for="rolUsuario">Rol de Sistema</label>
             <select class="form-control" id="rolUsuario" ng-model='rolUsuario' required>
-            <option value="" selected>-- Selecciona un Rol de Usuario --</option>
+            <option value="" selected>-- Selecciona un Rol de Sistema --</option>
               <option value="admin" selected>Administrador</option>
               <option value="user">Usuario N1 [Memos, Oficios, Correspondencia, Consultas]</option>
               <option value="basic">Usuario N2 [Memos, Oficios, Consultas]</option>
             </select>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model='esJefe' > <em> ¿El usuario a registrar sera <strong> Jefe de algún Departamento</strong>? </em>
+            </label>
+        </div>
+
+        <div ng-show="esJefe">
+            <div class="form-group" ng-hide="nuevoDepartamento">
+                <label class="control-label" for="selectedDepartamento">Departamento</label>
+                <select class="form-control" id="selectedDepartamento" ng-change="changeMethod()" ng-model='selectedDepartamento' required>
+                    <option value="" selected>-- Selecciona un departamento --</option>
+                    <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
+                </select>
+            </div>
+            
+            <div class="form-group" ng-show="nuevoDepartamento">
+                <label class="control-label" for="txtNuevoDepartamento">Nuevo Departamento</label>
+                <input type="text" class="form-control" id="txtNuevoDepartamento" ng-model='txtNuevoDepartamento' required>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model='nuevoDepartamento'> <strong> <em> Registrar Nuevo Departamento </em></strong>
+                </label>
+            </div>
         </div>
         
         <div class="form-group">
@@ -64,7 +78,7 @@
                 type="button" 
                 class="btn btn-primary btn-lg" 
                 ng-click='fn.guardar()'>
-                Guardar Usuario
+                Registrar Usuario
             </button>
         </div>
     </form>
