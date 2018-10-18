@@ -6,32 +6,36 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     console.log('Controller --> correspondenciaCtrl');
 
     // REFERENCIA
-    $scope.corrReferencia = "REF20181017";
+    $scope.corrReferencia = "";
 
     // NUEVA DEPENDENCIAS
     $scope.nuevaDependencia = false;
-    $scope.txtNuevaDependencia = "MI NUEVA DEPENCIA";
+    $scope.txtNuevaDependencia = "";
 
     // DEPENDENCIAS EXISTENTES
     $scope.dependencias = {};
     $scope.corrSelectedDependencia = "";
 
     // DESCRIPCION
-    $scope.corrDescripcion = "QUE ROLLO";
+    $scope.corrDescripcion = "";
 
     // ---- DEPARTAMENTO
     $scope.departamentos = {};
     $scope.corrSelectedDepartamento = "";
+
+    // -- NUEVO DEPARTAMENTO
+    $scope.nuevoDepartamento = false;
+    $scope.txtNuevoDepartamento = "";
 
     // DIRIGIDO A
     $scope.usuarios = {};
     $scope.corrSelectedDirigidoA = "";
 
     // TIEMPO LIMITE DE RESPUESTA
-    $scope.corrTiempoLimiteRespuesta = "3 día si no valiste reata xD";
+    $scope.corrTiempoLimiteRespuesta = "";
 
     // OBSERVACIONES
-    $scope.corrObservaciones = "Borre este texto cuando de guardar";
+    $scope.corrObservaciones = "";
 
     // SCOPE DE FUNCIONES
     $scope.fn = {
@@ -96,6 +100,8 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 corrReferencia   : $scope.corrReferencia,
                 nuevaDependencia : $scope.nuevaDependencia,
                 txtNuevaDependencia : $scope.txtNuevaDependencia,
+                nuevoDepartamento : $scope.nuevoDepartamento,
+                txtNuevoDepartamento : $scope.txtNuevoDepartamento,
                 corrSelectedDependencia : $scope.corrSelectedDependencia,
                 corrDescripcion : $scope.corrDescripcion,
                 corrSelectedDepartamento : $scope.corrSelectedDepartamento,

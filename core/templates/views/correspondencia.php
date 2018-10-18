@@ -36,12 +36,23 @@
             <input type="text" class="form-control" id="corrDescripcion" ng-model='corrDescripcion' required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-hide="nuevoDepartamento">
             <label class="control-label" for="corrSelectedDepartamento">Departamento:</label>
             <select class="form-control" id="corrSelectedDepartamento" ng-model='corrSelectedDepartamento' required>
                 <option value="" selected>-- Selecciona un departamento --</option>
                 <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nombre}}</option>
             </select>
+        </div>
+
+        <div class="form-group" ng-show="nuevoDepartamento">
+            <label class="control-label" for="txtNuevoDepartamento">Nuevo Departamento</label>
+            <input type="text" class="form-control" id="txtNuevoDepartamento" ng-model='txtNuevoDepartamento' required>
+        </div>
+
+         <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model='nuevoDepartamento'> <strong> <em> Registrar Nuevo Departamento </em></strong>
+            </label>
         </div>
 
         <div class="form-group">
