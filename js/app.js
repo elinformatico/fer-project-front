@@ -8,8 +8,8 @@ angular.module('mobieApp', ['ui.bootstrap'])
 
 	// PRODUCTION
 	// -----------------------------------------------------------
-	apiRouteProduction  : 'https://noehdez.info/api/public/mobie',
-    siteRouteProduction : 'https://noehdez.info/site'
+	apiRouteProduction  : 'http://proyecto.noehdez.info/api/public',
+    siteRouteProduction : 'http://proyecto.noehdez.info/section/login'
 })
 .run(function($rootScope, globalServerRoute)
 {
