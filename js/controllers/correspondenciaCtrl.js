@@ -100,28 +100,62 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 corrReferencia   : $scope.corrReferencia,
                 nuevaDependencia : $scope.nuevaDependencia,
                 txtNuevaDependencia : $scope.txtNuevaDependencia,
-                nuevoDepartamento : $scope.nuevoDepartamento,
-                txtNuevoDepartamento : $scope.txtNuevoDepartamento,
                 corrSelectedDependencia : $scope.corrSelectedDependencia,
                 corrDescripcion : $scope.corrDescripcion,
+                nuevoDepartamento : $scope.nuevoDepartamento,
+                txtNuevoDepartamento : $scope.txtNuevoDepartamento,
                 corrSelectedDepartamento : $scope.corrSelectedDepartamento,
                 corrSelectedDirigidoA : $scope.corrSelectedDirigidoA,
                 corrObservaciones : $scope.corrObservaciones,
             };
 
-            // Valida si no existe el nombre de Usuario
-            apiFactoryRest.guardarDependencia($scope.datos)
-            .success(function(rs){
-                if(rs.status === 'success'){
-                    growlService.notice('Mensaje Sistema', rs.msg);
-            
-                } else if(rs.status === 'error'){
-                    growlService.error('Mensaje Sistema', rs.msg);
-                }
-            })
-            .error(function(err){
-                growlService.error('Mensaje Sistema', err);
-            });
+            if(this.validarFormulario()) 
+            {
+                apiFactoryRest.guardarDependencia($scope.datos)
+                .success(function(rs){
+                    if(rs.status === 'success'){
+                        growlService.notice('Mensaje Sistema', rs.msg);
+
+                    } else if(rs.status === 'error'){
+                        growlService.error('Mensaje Sistema', rs.msg);
+                    }
+                })
+                .error(function(err){
+                    growlService.error('Mensaje Sistema', err);
+                });
+
+                // Limpiar todos los campos
+                this.limpiarCampos();
+            } else {
+                growlService.warning('Mensaje Sistema', '¡Por favor llene todos los campos para registrar la Correspondencia!');
+            }
+
+        },
+        validarFormulario : function(){
+            return (
+                ($scope.corrReferencia != undefined && $scope.corrReferencia != '') &&
+                ($scope.nuevaDependencia ? 
+                    ($scope.txtNuevaDependencia != undefined && $scope.txtNuevaDependencia != '') : 
+                    ($scope.corrSelectedDependencia != undefined && $scope.corrSelectedDependencia != '') ) &&
+                ($scope.corrDescripcion != undefined && $scope.corrDescripcion != '') &&
+                ($scope.nuevoDepartamento ? 
+                    ($scope.txtNuevoDepartamento != undefined && $scope.txtNuevoDepartamento != '') : 
+                    ($scope.corrSelectedDepartamento != undefined && $scope.corrSelectedDepartamento != '') ) &&
+                ($scope.corrSelectedDirigidoA != undefined && $scope.corrSelectedDirigidoA != '') && 
+                ($scope.corrObservaciones != undefined && $scope.corrObservaciones != '')
+            );
+        },
+        limpiarCampos : function () {
+            $scope.corrReferencia = "";
+            $scope.nuevaDependencia = false;
+            $scope.txtNuevaDependencia = "";
+            $scope.corrSelectedDependencia = "";
+            $scope.corrDescripcion = "";
+            $scope.nuevoDepartamento = false;
+            $scope.txtNuevoDepartamento = "";
+            $scope.corrSelectedDepartamento = "";
+            $scope.corrSelectedDirigidoA = "";
+            $scope.corrObservaciones = "";
         }
     };
    
