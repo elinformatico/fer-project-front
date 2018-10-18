@@ -116,6 +116,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     if(rs.status === 'success'){
                         growlService.notice('Mensaje Sistema', rs.msg);
 
+                        // Limpiar todos los campos
+                        $scope.fn.limpiarCampos();
+
                     } else if(rs.status === 'error'){
                         growlService.error('Mensaje Sistema', rs.msg);
                     }
@@ -124,8 +127,6 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     growlService.error('Mensaje Sistema', err);
                 });
 
-                // Limpiar todos los campos
-                this.limpiarCampos();
             } else {
                 growlService.warning('Mensaje Sistema', '¡Por favor llene todos los campos para registrar la Correspondencia!');
             }
