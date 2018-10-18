@@ -189,3 +189,13 @@
             $_SESSION["sessionLoaded"] == "true" && 
             count($_SESSION) > 0);
     }
+
+    function productionRedirect() 
+    {
+        if(strstr($_SERVER['HTTP_HOST'], PRODUCTION_DOMAIN)) 
+        {
+            if(!isset($_SERVER['REDIRECT_URL'])){
+                header("Location: section/login");
+            }
+        }
+    }

@@ -1,4 +1,8 @@
 <?php
+    
+    # If is production, try to redirect to the section/login page
+    productionRedirect();
+
     $app_base = strstr($_SERVER['HTTP_HOST'], 'localhost') ? 
 
     DEVELOPMENT_SERVER . ROOT_DEVELOPMENT :     # DEVELOPMENT
