@@ -1,7 +1,7 @@
 angular.module("mobieApp")
 .controller("correspondenciaCtrl", 
-         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService",  
-function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService ) {
+         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
+function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins ) {
     
     console.log('Controller --> correspondenciaCtrl');
 
@@ -43,6 +43,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             this.loadDepartamentos();
             this.loadDirigidoA();
             this.loadDependencias();
+            plugins.createCalendar('.tiempo-respuesta');
         },
         loadDepartamentos : function(){
             console.log('Loading departamentos...');
