@@ -33,6 +33,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
 
     // TIEMPO LIMITE DE RESPUESTA
     $scope.corrTiempoLimiteRespuesta = "";
+    $scope.tieneTiempoRespuesta = false;
 
     // OBSERVACIONES
     $scope.corrObservaciones = "";
@@ -43,10 +44,14 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             this.loadDepartamentos();
             this.loadDirigidoA();
             this.loadDependencias();
-            plugins.createCalendar('.tiempo-respuesta');
+            plugins.createCalendar('.tiempo-respuesta');;
+        },
+        lostFocusCalendar : function() {
+            // console.log('Date selected: ', plugins.getSelectedDate('#fechaRespuesta'));
+            $scope.corrTiempoLimiteRespuesta = plugins.getSelectedDate('#fechaRespuesta');
         },
         loadDepartamentos : function(){
-            console.log('Loading departamentos...');
+            // console.log('Loading departamentos...');
             apiFactoryRest.getDepartamentos()
                 .success(function(rs){
 
@@ -62,7 +67,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 });
         },
         loadDirigidoA : function() {
-            console.log('Loading usuarios de Dirigo A...');
+            // console.log('Loading usuarios de Dirigo A...');
             apiFactoryRest.getNombreUsuarios()
                 .success(function(rs){
 
@@ -78,7 +83,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 });
         },
         loadDependencias : function() {
-            console.log('Loading dependencias...');
+            // console.log('Loading dependencias...');
             apiFactoryRest.getDependencias()
                 .success(function(rs){
 
@@ -108,8 +113,11 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 corrSelectedDepartamento : $scope.corrSelectedDepartamento,
                 corrSelectedDirigidoA : $scope.corrSelectedDirigidoA,
                 corrObservaciones : $scope.corrObservaciones,
+                corrTiempoLimiteRespuesta : $scope.corrTiempoLimiteRespuesta,
+                tieneTiempoRespuesta : $scope.tieneTiempoRespuesta,
             };
 
+            console.log($scope.datos);
             if(this.validarFormulario()) 
             {
                 apiFactoryRest.guardarDependencia($scope.datos)
@@ -143,6 +151,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 ($scope.nuevoDepartamento ? 
                     ($scope.txtNuevoDepartamento != undefined && $scope.txtNuevoDepartamento != '') : 
                     ($scope.corrSelectedDepartamento != undefined && $scope.corrSelectedDepartamento != '') ) &&
+                ($scope.tieneTiempoRespuesta ? 
+                    ($scope.corrTiempoLimiteRespuesta != undefined && $scope.corrTiempoLimiteRespuesta != '') : 
+                    (true) ) &&
                 ($scope.corrSelectedDirigidoA != undefined && $scope.corrSelectedDirigidoA != '') && 
                 ($scope.corrObservaciones != undefined && $scope.corrObservaciones != '')
             );
@@ -157,6 +168,8 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             $scope.txtNuevoDepartamento = "";
             $scope.corrSelectedDepartamento = "";
             $scope.corrSelectedDirigidoA = "";
+            $scope.tieneTiempoRespuesta = false;
+            $scope.corrTiempoLimiteRespuesta = "";
             $scope.corrObservaciones = "";
         }
     };

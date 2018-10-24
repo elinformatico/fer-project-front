@@ -49,7 +49,7 @@
             <input type="text" class="form-control" id="txtNuevoDepartamento" ng-model='txtNuevoDepartamento' required>
         </div>
 
-         <div class="checkbox">
+        <div class="checkbox">
             <label>
                 <input type="checkbox" ng-model='nuevoDepartamento'> <strong> <em> Registrar Nuevo Departamento </em></strong>
             </label>
@@ -63,9 +63,19 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" ng-show="tieneTiempoRespuesta">
             <label class="control-label" for="corrTiempoLimiteRespuesta">Tiempo Limite de respuesta: 
-                <em>{{corrTiempoLimiteRespuesta}}</em>
+                <!-- <em>{{corrTiempoLimiteRespuesta}}</em> -->
+            </label>
+            
+            <div class="input-group date tiempo-respuesta">
+                <input type="text" class="form-control" ng-blur="fn.lostFocusCalendar()" ng-model="corrTiempoLimiteRespuesta" id="fechaRespuesta"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+        </div>
+        
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model='tieneTiempoRespuesta'> <strong> <em> Definir Fecha Limite de Respuesta </em></strong>
             </label>
         </div>
 
@@ -73,6 +83,18 @@
             <label class="control-label" for="corrObservaciones">Observaciones</label>
             <textarea class="form-control" rows="3" ng-model="corrObservaciones"></textarea>
         </div>
+        
+        <!-- Example -->
+        <!-- <div class="form-group">
+             <h2>Inline Calendar</h2>
+            <div class="demo-2"></div>
+            <h2>Date Range Picker</h2>
+            <div class="input-daterange input-group demo-3" id="datepicker">
+                <input type="text" class="input-sm form-control" name="start" />
+                <span class="input-group-addon">to</span>
+                <input type="text" class="input-sm form-control" name="end" />
+            </div>
+        </div> -->
         
         <div class="form-group">
             <button 
