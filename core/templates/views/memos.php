@@ -10,7 +10,7 @@
         <!-- Turnado A -->
         <div class="form-group">
             <label class="text-label" for="tipoTurnadoA">Turnado a:</label>
-            <select class="form-control" id="tipoTurnadoA" ng-model='tipoTurnadoA' ng-change="fn.onChangeTurnadoA(tipoTurnadoA)" required>
+            <select class="form-control" id="tipoTurnadoA" ng-model='tipoTurnadoA' ng-change="fn.onChangeTurnadoA(tipoTurnadoA)">
                 <option value="" selected>-- Seleccione una opción --</option>
                 <option value="dependencia">Dependencia</option>
                 <option value="usuario">Usuario</option>
@@ -20,17 +20,25 @@
     
         <!-- Turnado a Dependencias -->
         <div class="form-group" ng-show="mostrarTurnadoA_dependencia">
-            <label class="text-label" for="turnadoA_dependencia">Turnado a la Dependencia:</label>
-            <select class="form-control" id="turnadoA_dependencia" ng-model='turnadoA_dependencia' ng-change='fn.onChangeDependencia(turnadoA_dependencia)' required>
+            <label class="text-label" for="turnadoA_dependencia">Dependencia:</label>
+            <select class="form-control" id="turnadoA_dependencia" ng-model='turnadoA_dependencia' ng-change='fn.onChangeDependencia(turnadoA_dependencia)'>
               <option value="" selected>-- Selecciona una Dependencia existente --</option>
               <option ng-repeat="dependencia in dependencias" value="{{dependencia.id}}">{{dependencia.nombre}}</option>
+            </select>
+        </div>
+
+        <!-- Listado de Correspondencia para contestar  -->
+        <div class="form-group" ng-show="mostrarTurnadoA_dependencia">
+            <label class="text-label" for="turnadoA_dep_correspondencia">Correspondencia: </label>
+            <select class="form-control" id="turnadoA_dep_correspondencia" ng-model='turnadoA_dep_correspondencia'>
+              <option ng-repeat="correspondencia in correspondencias" value="{{correspondencia.id}}">{{correspondencia.referencia}}, {{correspondencia.descripcion}}</option>
             </select>
         </div>
 
         <!-- Turnado a Usuario -->
         <div class="form-group" ng-show="mostrarTurnadoA_usuario">
             <label class="text-label" for="turnadoA_usuario">Turnado al Usuario:</label>
-            <select class="form-control" id="turnadoA_usuario" ng-model='turnadoA_usuario' required>
+            <select class="form-control" id="turnadoA_usuario" ng-model='turnadoA_usuario'>
               <option value="" selected>-- Selecciona un Usuario--</option>
                 <option ng-repeat="usuario in usuarios" value="{{usuario.id}}">{{usuario.nombre}} --> [{{usuario.departamento}}]</option>
             </select>
@@ -44,16 +52,16 @@
 
         <div class="form-group">
             <label class="text-label" for="tipoAnio">¿A que año esta dirigido?</label>
-            <select class="form-control" id="tipoAnio" ng-model='tipoAnio' required>
+            <select class="form-control" id="tipoAnio" ng-model='tipoAnio'>
                 <option value="" selected>-- Seleccione una opción --</option>
-                <option value="dependencia">Año Corriente</option>
-                <option value="personal">Año Pasado</option>
+                <option value="anio_corriente">Año Corriente</option>
+                <option value="anio_pasado">Año Pasado</option>
             </select>
         </div>
 
         <div class="form-group">
             <label class="control-label" for="txtAsunto">Asunto</label>
-            <input type="text" class="form-control" id="txtAsunto" ng-model='txtAsunto' required>
+            <input type="text" class="form-control" id="txtAsunto" ng-model='txtAsunto'>
         </div>
 
         <div class="form-group">
@@ -65,7 +73,7 @@
             <button 
                 type="button" 
                 class="btn btn-primary btn-lg" 
-                ng-click='fn.guardar()'>
+                ng-click='fn.guardarMemo()'>
                 Guardar Memo
             </button>
         </div>

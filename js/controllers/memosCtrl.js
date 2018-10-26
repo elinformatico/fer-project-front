@@ -8,6 +8,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     // Listados de Dependecias y Usuarios
     $scope.dependencias = {};
     $scope.usuarios = {};
+    $scope.correspondencias = {}; // Datos Auto generados
 
     // Tipo Turnado A
     $scope.memoTipoTurnadoA = "";
@@ -42,6 +43,23 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
    		onChangeDependencia : function(dependenciaId) 
    		{
    			console.log('onChangeDependencia: ', dependenciaId);
+
+   			// Limpiamos La lista
+   			$scope.correspondencias = {};
+
+   			if(dependenciaId !== undefined && dependenciaId !== '')
+   			{
+				apiFactoryRest.getCorrespondencias(dependenciaId)
+	             	.success(function(rs)
+	             	{
+	                    if(rs.status === 'success'){
+	                        $scope.correspondencias = rs.correspondencias;
+	                    }
+	                })
+	                .error(function(err){
+	                    growlService.error('Mensaje Sistema', err);
+	                });
+   			}
    		},
    		loadDependencias : function() {
    			apiFactoryRest.getDependencias()
@@ -72,6 +90,33 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 .error(function(err){
                     growlService.error('Mensaje Sistema', err);
                 });
+   		},
+   		guardarMemo : function() {
+
+   			console.log('Guardando Memo');
+   			$scope.datos = {
+	   			tipoTurnadoA : $scope.tipoTurnadoA,
+	   			turnadoA_dep_correspondencia : $scope.turnadoA_dep_correspondencia,
+				turnadoA_usuario : $scope.turnadoA_usuario,
+				txtTurnadoA_abierto : $scope.txtTurnadoA_abierto,
+				tipoAnio : $scope.tipoAnio,
+				txtAsunto : $scope.txtAsunto,
+				txtObservaciones : $scope.txtObservaciones
+   			};
+
+   			console.log($scope.datos);
+   			this.limpiarCampos();
+   		},
+   		limpiarCampos : function() 
+   		{
+			this.ocultarSubOpciones();
+   			$scope.tipoTurnadoA = '';
+			$scope.turnadoA_dep_correspondencia = '';
+			$scope.turnadoA_usuario = '';
+			$scope.txtTurnadoA_abierto = '';
+			$scope.tipoAnio = '';
+			$scope.txtAsunto = '';
+			$scope.txtObservaciones = '';
    		}
    	};
 
