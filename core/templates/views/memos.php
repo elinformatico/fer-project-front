@@ -7,38 +7,58 @@
   <div class="container">
     <form name='frmMemos' novalidate>
 
+        <!-- Turnado A -->
         <div class="form-group">
-            <label class="text-label" for="memosTurnadoA">Turnado a:</label>
-            <select class="form-control" id="memosTurnadoA" ng-model='memosTurnadoA' required>
-              <option value="magna" selected>Opcion 1</option>
-              <option value="premium">Opcion 2</option>
+            <label class="text-label" for="tipoTurnadoA">Turnado a:</label>
+            <select class="form-control" id="tipoTurnadoA" ng-model='tipoTurnadoA' ng-change="fn.onChangeTurnadoA(tipoTurnadoA)" required>
+                <option value="" selected>-- Seleccione una opción --</option>
+                <option value="dependencia">Dependencia</option>
+                <option value="usuario">Usuario</option>
+                <option value="abierto">Abierto</option>
+            </select>
+        </div>
+    
+        <!-- Turnado a Dependencias -->
+        <div class="form-group" ng-show="mostrarTurnadoA_dependencia">
+            <label class="text-label" for="turnadoA_dependencia">Turnado a la Dependencia:</label>
+            <select class="form-control" id="turnadoA_dependencia" ng-model='turnadoA_dependencia' ng-change='fn.onChangeDependencia(turnadoA_dependencia)' required>
+              <option value="" selected>-- Selecciona una Dependencia existente --</option>
+              <option ng-repeat="dependencia in dependencias" value="{{dependencia.id}}">{{dependencia.nombre}}</option>
+            </select>
+        </div>
+
+        <!-- Turnado a Usuario -->
+        <div class="form-group" ng-show="mostrarTurnadoA_usuario">
+            <label class="text-label" for="turnadoA_usuario">Turnado al Usuario:</label>
+            <select class="form-control" id="turnadoA_usuario" ng-model='turnadoA_usuario' required>
+              <option value="" selected>-- Selecciona un Usuario--</option>
+                <option ng-repeat="usuario in usuarios" value="{{usuario.id}}">{{usuario.nombre}} --> [{{usuario.departamento}}]</option>
+            </select>
+        </div>
+
+        <!-- Turnado a Abierto -->
+        <div class="form-group" ng-show="mostrarTurnadoA_abierto">
+            <label class="control-label" for="txtTurnadoA_abierto">Turnado a: (Abierto)</label>
+            <input type="text" class="form-control" id="txtTurnadoA_abierto" ng-model='txtTurnadoA_abierto'>
+        </div>
+
+        <div class="form-group">
+            <label class="text-label" for="tipoAnio">¿A que año esta dirigido?</label>
+            <select class="form-control" id="tipoAnio" ng-model='tipoAnio' required>
+                <option value="" selected>-- Seleccione una opción --</option>
+                <option value="dependencia">Año Corriente</option>
+                <option value="personal">Año Pasado</option>
             </select>
         </div>
 
         <div class="form-group">
-            <div class="radio">
-                <label>
-                    <input type="radio" name="memosTipoAnio" ng-model="memosTipoAnio"> Año Corriente
-                </label>
-            </div>
+            <label class="control-label" for="txtAsunto">Asunto</label>
+            <input type="text" class="form-control" id="txtAsunto" ng-model='txtAsunto' required>
         </div>
 
         <div class="form-group">
-            <div class="radio">
-                <label>
-                    <input type="radio" name="memosTipoAnio" ng-model="memosTipoAnio"> Año Pasado
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="memosAsunto">Asunto</label>
-            <input type="text" class="form-control" id="memosAsunto" ng-model='memosAsunto' required>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label" for="memosObservaciones">Observaciones</label>
-            <textarea class="form-control" rows="3" ng-model="memosObservaciones"></textarea>
+            <label class="control-label" for="txtObservaciones">Observaciones</label>
+            <textarea class="form-control" rows="3" ng-model="txtObservaciones"></textarea>
         </div>
         
         <div class="form-group">
