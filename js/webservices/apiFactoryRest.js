@@ -105,5 +105,17 @@ angular.module('mobieApp')
         });
     }
 
+    // -- Memos & Oficios
+    dataFactory.getCorrespondencias = function(correspondenciaId) {
+        return $http.get(restUrl + '/get/memos-oficios/correspondencias/' + correspondenciaId);
+    }
+
+    dataFactory.guardarMemoOficio = function(data){
+        return $http.post(restUrl + 'store/memos-oficios', data, {
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transform
+        });
+    }
+
     return dataFactory;
 }]);
