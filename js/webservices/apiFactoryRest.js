@@ -111,7 +111,7 @@ angular.module('mobieApp')
     }
 
     dataFactory.guardarMemoOficio = function(data){
-        return $http.post(restUrl + 'store/memos-oficios', data, {
+        return $http.post(restUrl + '/store/memos-oficios', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
         });
