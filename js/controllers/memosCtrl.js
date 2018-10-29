@@ -11,9 +11,6 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     $scope.correspondencias = {}; // Datos Auto generados
     $scope.turnadoA_dep_correspondencia = '';
 
-    // Tipo Turnado A
-    $scope.memoTipoTurnadoA = "";
-   
    	$scope.fn = {
    		init : function() {
    			this.loadDependencias();
@@ -27,8 +24,6 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
    		onChangeTurnadoA : function(tipoTurnadoA) 
    		{
    			// console.log('OnChange: ', tipoTurnadoA);
-
-   			$scope.memoTipoTurnadoA = tipoTurnadoA;
    			this.ocultarSubOpciones();
 
    			if(tipoTurnadoA === 'dependencia') {
@@ -96,9 +91,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     growlService.error('Mensaje Sistema', err);
                 });
    		},
-   		guardarMemo : function() {
+   		guardar : function() {
 
-   			console.log('Guardando Memo..');
+   			console.log('Guardando datos..');
    			$scope.datos = {
                 tipoRegistro : 'memo',
 	   			tipoTurnadoA : $scope.tipoTurnadoA,

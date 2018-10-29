@@ -73,7 +73,7 @@
             <button 
                 type="button" 
                 class="btn btn-primary btn-lg" 
-                ng-click='fn.guardarMemo()'>
+                ng-click='fn.guardar()'>
                 Guardar Memo
             </button>
         </div>
