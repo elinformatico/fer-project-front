@@ -1,7 +1,7 @@
 angular.module("mobieApp")
 .controller("oficiosCtrl", 
-         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService",  
-function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService ) {
+         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
+function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins ) {
 
     console.log('Controller --> oficiosCtrl');
     // Listados de Dependecias y Usuarios
@@ -94,6 +94,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
 
    			console.log('Guardando datos..');
    			$scope.datos = {
+                userId : plugins.getUserId(),
                 tipoRegistro : 'oficio',
 	   			tipoTurnadoA : $scope.tipoTurnadoA,
 	   			turnadoA_dep_correspondencia : $scope.turnadoA_dep_correspondencia,

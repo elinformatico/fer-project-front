@@ -1,7 +1,7 @@
 angular.module("mobieApp")
 .controller("memosCtrl", 
-         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService",  
-function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService ) {
+         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
+function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins) {
 
     console.log('Controller --> memosCtrl');
 
@@ -95,6 +95,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
 
    			console.log('Guardando datos..');
    			$scope.datos = {
+                userId : plugins.getUserId(),
                 tipoRegistro : 'memo',
 	   			tipoTurnadoA : $scope.tipoTurnadoA,
 	   			turnadoA_dep_correspondencia : $scope.turnadoA_dep_correspondencia,
