@@ -202,6 +202,15 @@
             count($_SESSION) > 0);
     }
 
+    function getRoleSistema() 
+    {    
+        if(isset($_SESSION["role"])) {
+            return $_SESSION["role"];
+        } else {
+            return "invalid";
+        }
+    }
+
     function productionRedirect() 
     {
         if(strstr($_SERVER['HTTP_HOST'], PRODUCTION_DOMAIN)) 
