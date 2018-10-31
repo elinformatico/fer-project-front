@@ -44,7 +44,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             this.loadDepartamentos();
             this.loadDirigidoA();
             this.loadDependencias();
-            plugins.createCalendar('.tiempo-respuesta');;
+            plugins.createCalendar('.tiempo-respuesta');
         },
         lostFocusCalendar : function() {
             // console.log('Date selected: ', plugins.getSelectedDate('#fechaRespuesta'));
@@ -103,6 +103,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             console.log("Guardando...");
 
             $scope.datos = {
+                userId : plugins.getUserId(),
                 corrReferencia   : $scope.corrReferencia,
                 nuevaDependencia : $scope.nuevaDependencia,
                 txtNuevaDependencia : $scope.txtNuevaDependencia,

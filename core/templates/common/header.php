@@ -54,6 +54,7 @@
     <body>
 <?php endif; ?>
 
+<input type="hidden" id="userId" value="<?php echo getSessionUserId(); ?>" />
 <!-- Navigation Menu -->
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">

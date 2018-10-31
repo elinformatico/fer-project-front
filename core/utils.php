@@ -127,10 +127,11 @@
 
         $splitData = explode("|", $token);
         $returnDataUser = [
-            "userName"      => base64_decode($splitData[0]),
-            "fullName"      => base64_decode($splitData[1]),
-            "role"          => base64_decode($splitData[2]),
-            "dateExpired"   => base64_decode($splitData[3]),
+            "userId"        => base64_decode($splitData[0]),
+            "userName"      => base64_decode($splitData[1]),
+            "fullName"      => base64_decode($splitData[2]),
+            "role"          => base64_decode($splitData[3]),
+            "dateExpired"   => base64_decode($splitData[4]),
         ];
         return $returnDataUser;
     }
@@ -163,6 +164,7 @@
                 {
                     $dataUser = getAuthUserData($response->token);
 
+                    $_SESSION["userId"]         = $dataUser["userId"];
                     $_SESSION["userName"]       = $dataUser["userName"];
                     $_SESSION["fullName"]       = $dataUser["fullName"];
                     $_SESSION["role"]           = $dataUser["role"];
@@ -180,6 +182,16 @@
             if(isSessionActive()) {
                 header("Location: inicio");
             }
+        }
+    }
+
+    function getSessionUserId() 
+    {  
+        $seek = "Fer$#@!2018!..";
+        if(isset($_SESSION["userId"])) {
+            return base64_encode($seek . "|" . $_SESSION["userId"]);
+        } else {
+            return 0;
         }
     }
 

@@ -13,4 +13,9 @@ angular.module("mobieApp")
     this.getSelectedDate = function(jQueryElementId) {
         return $(jQueryElementId).val();
     };
+  
+    this.getUserId = function() {
+        return $("#userId").val();
+    }
+    
 });
