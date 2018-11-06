@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="<?php echo $pageData['app_base']; ?>/js/plugins/calendar/bootstrap-datepicker3.css">
   <script src="<?php echo $pageData['app_base']; ?>/js/plugins/calendar/bootstrap-datepicker.js"></script>
 
+  <!-- Preloading -->
+  <link rel="stylesheet" href="<?php echo $pageData['app_base']; ?>/js/plugins/preloading/preloading.css">
+  
   <!-- ================================================================================= -->
   <script src="<?php echo $pageData['app_base']; ?>/js/app.js"></script>
   <!-- ================================================================================= -->
@@ -53,6 +56,15 @@
 <?php else: ?>
     <body>
 <?php endif; ?>
+      
+<!-- Preloading HTML-->
+<div class="container-preloading">
+	<div class="row"> 
+        <div class="animationload">
+            <div class="osahanloading"></div>
+        </div>
+	</div>
+</div>
 
 <input type="hidden" id="userId" value="<?php echo getSessionUserId(); ?>" />
 <!-- Navigation Menu -->

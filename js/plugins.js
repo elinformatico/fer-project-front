@@ -18,4 +18,15 @@ angular.module("mobieApp")
         return $("#userId").val();
     }
     
+    
+    this.preloadingIn = function() 
+    {
+        $(".container-preloading").fadeIn("slow");
+    }
+    
+    this.preloadingOut = function() 
+    {
+        $(".container-preloading").fadeOut("slow");
+    }
+    
 });
