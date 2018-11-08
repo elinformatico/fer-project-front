@@ -29,4 +29,11 @@ angular.module("mobieApp")
         $(".container-preloading").fadeOut("slow");
     }
     
+    this.confirmar = function(msg) 
+    {
+        if(msg !== undefined)
+            return confirm(msg);
+        else 
+            return confirm("¿Todos los datos son correctos para continuar? Se procederá a guardar la información capturada.");
+    }
 });
