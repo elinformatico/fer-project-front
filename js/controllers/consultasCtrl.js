@@ -12,9 +12,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     $scope.fechaFinal = '';
   
     $scope.fn = {
-        
         init : function() {
             console.log('Init');
+            // plugins.preloadingIn();
             plugins.createCalendar('.rango-fecha');
         },
         onBuscarPor : function(buscarPor) {

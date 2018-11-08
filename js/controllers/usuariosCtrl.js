@@ -1,7 +1,7 @@
 angular.module("mobieApp")
 .controller("usuariosCtrl", 
-         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService",  
-function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService ) {
+         ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
+function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins ) {
 
     console.log('Controller --> usuariosCtrl');
     // Datos obtenidos de la Base de Datos
@@ -83,22 +83,25 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             {
                 if(this.validarPassword($scope.password, $scope.rePassword)){
 
-                    // Valida si no existe el nombre de Usuario
-                    apiFactoryRest.guardarUsuario($scope.datos)
-                    .success(function(rs){
-                        if(rs.status === 'success'){
-                            growlService.notice('Mensaje Sistema', rs.msg);
+                    if(plugins.confirmar()) 
+                    {
+                        // Valida si no existe el nombre de Usuario
+                        apiFactoryRest.guardarUsuario($scope.datos)
+                        .success(function(rs){
+                            if(rs.status === 'success'){
+                                growlService.notice('Mensaje Sistema', rs.msg);
 
-                            $scope.fn.limpiarCampos();
+                                $scope.fn.limpiarCampos();
+
+                            } else if(rs.status === 'error'){
+                                growlService.error('Mensaje Sistema', rs.msg);
+                            }
+                        })
+                        .error(function(err){
+                            growlService.error('Mensaje Sistema', err);
+                        });
+                    }
                     
-                        } else if(rs.status === 'error'){
-                            growlService.error('Mensaje Sistema', rs.msg);
-                        }
-                    })
-                    .error(function(err){
-                        growlService.error('Mensaje Sistema', err);
-                    });
-        
                 } else {
                     growlService.warning('Mensaje Sistema', '¡Las contraseñas no coinciden, porfavo de verificarlas!');    
                 }

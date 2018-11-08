@@ -108,22 +108,26 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
 
    			// console.log($scope.datos);
             
-            if(this.validarCampos()) {
-                apiFactoryRest.guardarMemoOficio($scope.datos)
-                  .success(function(rs)
-                    {
-                        if(rs.status === 'success')
-                        {    
-                            growlService.notice('Mensaje Sistema', rs.msg);
-                            $scope.fn.limpiarCampos();
+            if(this.validarCampos()) 
+            {
+                if(plugins.confirmar()) 
+                {
+                    apiFactoryRest.guardarMemoOficio($scope.datos)
+                      .success(function(rs)
+                        {
+                            if(rs.status === 'success')
+                            {    
+                                growlService.notice('Mensaje Sistema', rs.msg);
+                                $scope.fn.limpiarCampos();
 
-                        } else if(rs.status === 'error'){
-                            growlService.error('Mensaje Sistema', rs.msg);
-                        }
-                    })
-                    .error(function(err){
-                        growlService.error('Mensaje Sistema', err);
-                    });   
+                            } else if(rs.status === 'error'){
+                                growlService.error('Mensaje Sistema', rs.msg);
+                            }
+                        })
+                        .error(function(err){
+                            growlService.error('Mensaje Sistema', err);
+                        });   
+                }
             } else {
                 growlService.warning('Mensaje Sistema', '¡Por favor llene todos los campos para registrar el Memo!');
             }
