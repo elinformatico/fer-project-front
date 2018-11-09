@@ -4,7 +4,9 @@ angular.module("mobieApp")
     // Source: https://www.jqueryscript.net/time-clock/Configurable-Date-Picker-Plugin-For-Bootstrap.html
     this.createCalendar = function(element) 
     {
-        $(element).datepicker()
+        $(element).datepicker({
+            format: 'yyyy/mm/dd',
+        })
             .on('changeDate', function(e) {
                 // console.log('Date Selected: ', e);
             });

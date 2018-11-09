@@ -116,6 +116,14 @@ angular.module('mobieApp')
             transformRequest: transform
         });
     }
+    
+    // Consultas
+    dataFactory.consultarCorrespondencia = function(data) {
+        return $http.post(restUrl + '/get/consultas/correspondencia', data, {
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transform
+        });
+    }
 
     return dataFactory;
 }]);

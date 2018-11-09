@@ -27,8 +27,8 @@
                         <td><label class="text-label" for="buscarPor">Usuario: </label></td>
                         <td>
                             <div class="form-group">
-                                <select class="form-control" id="selectedUsuario" ng-model='selectedUsuario' required>
-                                    <option value="todos" selected>Todos los Usuario</option>
+                                <select class="form-control" id="selectedUsuario" ng-model='selectedUsuario' ng-change="fn.selectedUser(selectedUsuario)" required>
+                                    <option value="0" selected>Todos los Usuario</option>
                                     <option ng-repeat="usuario in usuarios" value="{{usuario.id}}">{{usuario.nombre}} --> [{{usuario.departamento}}]</option>
                                 </select>
                             </div>
@@ -57,17 +57,28 @@
         </div>
         
         <div class="form-group">
-            
             <table class="table table-striped">
                 <tr> 
-                    <td>Seleccionar</td>
-                    <td>Fecha Creación</td>
                     <td>Folio</td>
-                    <td>Dirigido A:</td>
-                    <td>Asunto</td>
+                    <td>Tipo</td>
+                    <td>Fecha Creado</td>
                     <td>Solicitante</td>
+                    <td>Dirigido A</td>
                     <td>Depto Dirigido</td>
+                    <td>Usuario Dirigido</td>
+                    <td>Referencia</td>
                     <td>Fecha Limite</td>
+                </tr>
+                <tr ng-repeat="correspondencia in correspondencias">
+                    <td>{{correspondencia.folio}}</td>
+                    <td>Correspondencia</td>
+                    <td>{{correspondencia.fecha_creacion}}</td>
+                    <td>{{correspondencia.creador}}</td>
+                    <td>{{correspondencia.dirigido_a}}</td>
+                    <td>{{correspondencia.depto_dirigido}}</td>
+                    <td>{{correspondencia.persona_dirigida}}</td>
+                    <td>{{correspondencia.referencia}}</td>
+                    <td>{{correspondencia.fecha_limite}}</td>
                 </tr>
             </table>
         </div>
