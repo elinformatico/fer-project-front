@@ -77,6 +77,8 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     {
                         if(rs.status === 'success') {
                             $scope.correspondencias = rs.correspondencias;
+                        } else if(rs.status === 'error') {
+                            growlService.warning('Mensaje Sistema', rs.msg);
                         }
                     })
                     .error(function(err){

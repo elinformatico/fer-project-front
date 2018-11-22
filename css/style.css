@@ -9,3 +9,29 @@ footer {
   background-color: #f2f2f2;
   padding: 25px;
 }
+
+.cor_green {
+    background-color: #7CF700;
+    font-style: bold;
+}
+
+.cor_yellow {
+  background-color: yellow;
+  font-style: bold;
+}
+
+.cor_orange {
+  background-color: orange;
+  font-style: bold;
+}
+
+.cor_red_low{
+  background-color: #FA7D7D; 
+  font-style: bold; 
+}
+
+.cor_red_high {
+  background-color: #F70000;
+  color: #E8E8E8;
+  font-style: bold;
+}

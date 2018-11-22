@@ -68,6 +68,7 @@
                     <td>Usuario Dirigido</td>
                     <td>Referencia</td>
                     <td>Fecha Limite</td>
+                    <td>Estatus</td>
                 </tr>
                 <tr ng-repeat="correspondencia in correspondencias">
                     <td>{{correspondencia.folio}}</td>
@@ -79,6 +80,7 @@
                     <td>{{correspondencia.persona_dirigida}}</td>
                     <td>{{correspondencia.referencia}}</td>
                     <td>{{correspondencia.fecha_limite}}</td>
+                    <td class="{{correspondencia.color_status}}">{{correspondencia.estatus_limite}}</td>
                 </tr>
             </table>
         </div>
