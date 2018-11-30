@@ -121,7 +121,13 @@
             <a href="{{linkPdf}}" target="_new" 
                 type="button" 
                 class="btn btn-primary btn-lg" ng-show="showLinkPdf">
-                Generar PDF
+                Ver PDF
+            </a>
+          
+            <a href="{{linkCsv}}" target="_new" 
+                type="button" 
+                class="btn btn-primary btn-lg" ng-show="showLinkCsv">
+                Descargar Excel
             </a>
         </div>
     </form>

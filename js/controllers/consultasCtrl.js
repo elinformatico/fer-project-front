@@ -18,8 +18,11 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     $scope.memosYcorrespondencias = {};
   
     // PDF Export
-    $scope.linkPdf = "https://elinformatico.net";
+    $scope.linkPdf = "";
     $scope.showLinkPdf = false;
+  
+    $scope.linkCsv = "";
+    $scope.showLinkCsv = false;
     
     $scope.fn = {
         init : function() {
@@ -36,23 +39,31 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             // Limpiar cada vez que se cambie el tipo de busqueda
             $scope.correspondencias = {};
             $scope.memosYcorrespondencias = {};
-            $scope.linkPdf = "";
-            $scope.showLinkPdf = false;
+            this.clearData();
         },
         lostFocustInicial : function() {
             $scope.fechaInicial = plugins.getSelectedDate('#fechaInicial');
             $scope.fechaFinal   = plugins.getSelectedDate('#fechaFinal');
-            $scope.showLinkPdf = false;
+            this.clearData();
         }, 
         lostFocustFinal : function() {
             $scope.fechaInicial = plugins.getSelectedDate('#fechaInicial');
             $scope.fechaFinal   = plugins.getSelectedDate('#fechaFinal');
+            this.clearData();
+        },
+        clearData : function() {
+            $scope.correspondencias = {};
+            $scope.memosYcorrespondencias = {};
+            $scope.linkPdf = "";
+            $scope.linkCsv = "";
             $scope.showLinkPdf = false;
+            $scope.showLinkCsv = false;
         },
         selectedUser : function(selectedUsuario) {
-            console.log("Se selecciono el Usuario ", selectedUsuario);
-            
-            $scope.showLinkPdf = false;
+          
+            console.log("Se selecciono el Usuario ", selectedUsuario);  
+          
+            this.clearData();
             if(selectedUsuario !== '0') {
                 $scope.selectedUser = true;
             } else {
@@ -76,6 +87,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
         {
             // console.log('Fecha Inicial: ', $scope.fechaInicial);
             // console.log('Fecha Final: ', $scope.fechaFinal);
+            this.clearData();
             $scope.data = {
                 userId : plugins.getUserId(),
                 selectedUser : $scope.selectedUser,
@@ -93,7 +105,10 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                         if(rs.status === 'success') {
                             $scope.correspondencias = rs.correspondencias;
                             $scope.linkPdf = apiFactoryRest.rootScope + '/get/pdf' + rs.linkPdf;
+                            $scope.linkCsv = apiFactoryRest.rootScope + '/get/csv' + rs.linkPdf;
                             $scope.showLinkPdf = true;
+                            $scope.showLinkCsv = true;
+                          
                         } else if(rs.status === 'error') {
                             growlService.warning('Mensaje Sistema', rs.msg);
                         }
@@ -111,7 +126,10 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                         if(rs.status === 'success') {
                             $scope.memosYcorrespondencias = rs.resultados;
                             $scope.linkPdf = apiFactoryRest.rootScope + '/get/pdf' + rs.linkPdf;
+                            $scope.linkCsv = apiFactoryRest.rootScope + '/get/csv' + rs.linkPdf;
                             $scope.showLinkPdf = true;
+                            $scope.showLinkCsv = true;
+                          
                         } else if(rs.status === 'error') {
                             growlService.warning('Mensaje Sistema', rs.msg);
                         }
@@ -124,6 +142,5 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             }
         }
     };
-   
     $scope.fn.init();
 }]);
