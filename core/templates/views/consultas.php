@@ -56,7 +56,7 @@
             </table>
         </div>
         
-        <div class="form-group">
+        <div class="form-group" ng-show="buscarPor === 'correspondencia'">
             <table class="table table-striped">
                 <tr> 
                     <td>Folio</td>
@@ -84,6 +84,31 @@
                 </tr>
             </table>
         </div>
+      
+        <div class="form-group" ng-show="buscarPor === 'memos' || buscarPor === 'oficios'">
+            <table class="table table-striped">
+                <tr> 
+                    <td>Folio</td>
+                    <td>Tipo</td>
+                    <td>Creado por</td>
+                    <td>Turnado A</td>
+                    <td>Año</td>
+                    <td>Asunto</td>
+                    <td>Observaciones</td>
+                    <td>Fecha Creacion</td>
+                </tr>
+                <tr ng-repeat="row in memosYcorrespondencias">
+                    <td>{{row.folio}}</td>
+                    <td>{{row.tabla}}</td>
+                    <td>{{row.creador}}</td>
+                    <td>{{row.turnado_a}}</td>
+                    <td>{{row.anio}}</td>
+                    <td>{{row.asunto}}</td>
+                    <td>{{row.observaciones}}</td>
+                    <td>{{row.fecha_creacion}}</td>
+                </tr>
+            </table>
+        </div>
         
         <div class="form-group">
             <button 
@@ -92,6 +117,12 @@
                 ng-click='fn.consultar()'>
                 Consultar Datos
             </button>
+        
+            <a href="{{linkPdf}}" target="_new" 
+                type="button" 
+                class="btn btn-primary btn-lg" ng-show="showLinkPdf">
+                Generar PDF
+            </a>
         </div>
     </form>
 </div>

@@ -7,7 +7,8 @@ angular.module('mobieApp')
     var transform = function(data){
         return jQuery.param(data);
     }
-
+    
+    dataFactory.rootScope = restUrl;
     // ----------------------- Ejemplos -------------------------
     dataFactory.storeExample = function(data){
       return $http.post(restUrl + '/store/example', data, {
@@ -120,6 +121,13 @@ angular.module('mobieApp')
     // Consultas
     dataFactory.consultarCorrespondencia = function(data) {
         return $http.post(restUrl + '/get/consultas/correspondencia', data, {
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transform
+        });
+    }
+    
+    dataFactory.consultarMemosOficios = function(data) {
+        return $http.post(restUrl + '/get/consultas/memos-oficios', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
         });
