@@ -3,3 +3,4 @@ api
 api/*
 js/vendor/*
 nbproject/*
+db/*
