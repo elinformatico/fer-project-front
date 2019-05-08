@@ -2,5 +2,6 @@
 	# Close session
 	if(isSessionActive()) {
 		closeSession();
-		header("Location: login");
+		// header("Location: login");
+        redirect("login");
 	}

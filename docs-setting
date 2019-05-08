@@ -1,0 +1,30 @@
+- Instalacion y Coniguracion del Proyecto para produccion
+
+1) Modificar el archivo core/config 
+
+    define('PRODUCTION_SERVER',     'https://elinformatico.net');
+    define('PRODUCTION_DOMAIN',     'elinformatico.net');
+    define('ROOT_PRODUCTION',       '/fer.project');
+
+Nota: Si el proyecto esta en un directorio se debe definir en ROOT_PRODUCTION con un "/" al prinicio seguido 
+del nombre del directorio. Si el proyecto esta en un dominio root solo definir el slash "/"
+
+2) Modificar el archivo .htaccess donde se encuentra el directorio root del proyecto
+
+Modificar la siguiente linea del archivo:
+
+RewriteBase /fer.project 
+
+Nota: Al igual que el punto anterior, si el proyecto esta en root "No directorio" solo poner "/" y si esta en un directorio
+definir el directorio como en el ejemplo "/fer.project"
+
+
+3) Modicar el archivo js/app.js en la seccion de "PRODUCTION" y definir el dominio
+
+// PRODUCTION
+// -----------------------------------------------------------
+apiRouteProduction  : 'http{s}:{domain | directory}/api/public',
+siteRouteProduction : 'http{s}:{domain | directory}/section/login'
+
+4) Si esta usando "CloudFare" purgar y poner en modo "Development" para ver los cambios en tiempo real.
+Una vez finalizado el desarrollo, desactivar el modo "Development" en la seccion de "Caching".

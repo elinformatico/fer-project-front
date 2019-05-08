@@ -171,7 +171,8 @@
                     $_SESSION["dateExpired"]    = $dataUser["dateExpired"];
                     $_SESSION["sessionLoaded"]  = "true";
 
-                    header("Location: inicio");
+                    # header("Location: inicio");
+                    redirect("inicio");
 
                 } else {
                     $_REQUEST['error'] = $response->msg;
@@ -180,7 +181,7 @@
             }
         } else {
             if(isSessionActive()) {
-                header("Location: inicio");
+                redirect("inicio");
             }
         }
     }
@@ -219,4 +220,9 @@
                 header("Location: section/login");
             }
         }
+    }
+
+    function redirect($url) {
+        echo "<script> window.location.href='{$url}'; </script>";
+        exit;
     }

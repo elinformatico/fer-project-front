@@ -1,4 +1,6 @@
 <?php
+  # echo "Bloqueado hasta obtener Pago....";
+  # exit;
 	session_start();
 	# Include Config Data
     include_once 'core/config.php';
