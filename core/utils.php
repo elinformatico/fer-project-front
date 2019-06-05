@@ -170,6 +170,12 @@
                     $_SESSION["role"]           = $dataUser["role"];
                     $_SESSION["dateExpired"]    = $dataUser["dateExpired"];
                     $_SESSION["sessionLoaded"]  = "true";
+                  
+                    # Generating the Token for the session
+                    $seek = "Fer$#@!2018!..";
+                    $_SESSION["apiToken"]    =  base64_encode(
+                                base64_encode($seek) . "||" . base64_encode($response->token) . "||" . base64_encode(md5($password))
+                    );
 
                     # header("Location: inicio");
                     redirect("inicio");
@@ -198,9 +204,25 @@
 
     function isSessionActive() 
     {
-        return (isset($_SESSION["sessionLoaded"]) && 
+        # Getting the Global Server Data
+        global $server;
+        
+        if (isset($_SESSION["sessionLoaded"]) && 
             $_SESSION["sessionLoaded"] == "true" && 
-            count($_SESSION) > 0);
+            count($_SESSION) > 0) 
+        {    
+            $endPoint = "api/public/validate-session/{$_SESSION["apiToken"]}";
+            $response = callApi($server["server"], $server["root"], $endPoint);
+            
+            if($response->status != 200) {
+                closeSession();
+                redirect("inicio?expired=true");
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     function getRoleSistema() 
@@ -225,4 +247,9 @@
     function redirect($url) {
         echo "<script> window.location.href='{$url}'; </script>";
         exit;
+    }
+    
+    function isExpiredSessionFromURL() {
+        return isset($_SERVER['REQUEST_URI']) && 
+            strstr($_SERVER['REQUEST_URI'], 'expired=true');
     }
