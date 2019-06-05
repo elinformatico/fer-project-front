@@ -52,27 +52,27 @@ angular.module('mobieApp')
     }
 
     // --------- Financial Log Rest Services -----------
-    dataFactory.getCategories = function(){
+    dataFactory.getCategories = function(apiToken){
         return $http.get(restUrl + '/get/categories');
     }
 
-    dataFactory.getPaymentMethods = function(){
+    dataFactory.getPaymentMethods = function(apiToken){
         return $http.get(restUrl + '/get/paymentmethods');
     }
 
-    dataFactory.getPaymentMethodsByType = function(type){
+    dataFactory.getPaymentMethodsByType = function(type, apiToken){
         return $http.get(restUrl + '/get/paymentmethods/' + type);
     }
 
-    dataFactory.getBanks = function(){
+    dataFactory.getBanks = function(apiToken){
         return $http.get(restUrl + '/get/banks');
     }
 
-    dataFactory.getCars = function(){
+    dataFactory.getCars = function(apiToken){
         return $http.get(restUrl + '/get/cars');
     }
 
-    dataFactory.storeFinancialLog = function(data){
+    dataFactory.storeFinancialLog = function(data, apiToken){
         return $http.post(restUrl + '/store/financial/log', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
@@ -80,26 +80,29 @@ angular.module('mobieApp')
     }
 
     // ----------- Departamentos -------------
-    dataFactory.getDepartamentos = function(){
+    dataFactory.getDepartamentos = function(apiToken){
         return $http.get(restUrl + '/get/departamentos');
     }
 
-    dataFactory.guardarUsuario = function(data){
+    dataFactory.guardarUsuario = function(data, apiToken){
         return $http.post(restUrl + '/store/usuario', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
         });
     }
 
-    dataFactory.getNombreUsuarios = function() {
-        return $http.get(restUrl + '/get/nombreUsuarios');
+    dataFactory.getNombreUsuarios = function(apiToken) {
+        return $http.get(restUrl + '/get/nombreUsuarios', {
+             headers : { 'token': apiToken},
+        });
+      
     }
 
-    dataFactory.getDependencias = function() {
+    dataFactory.getDependencias = function(apiToken) {
         return $http.get(restUrl + '/get/dependencias');
     }
 
-    dataFactory.guardarDependencia = function(data){
+    dataFactory.guardarDependencia = function(data, apiToken){
         return $http.post(restUrl + '/store/dependencia', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
@@ -107,11 +110,11 @@ angular.module('mobieApp')
     }
 
     // -- Memos & Oficios
-    dataFactory.getCorrespondencias = function(correspondenciaId) {
+    dataFactory.getCorrespondencias = function(correspondenciaId, apiToken) {
         return $http.get(restUrl + '/get/memos-oficios/correspondencias/' + correspondenciaId);
     }
 
-    dataFactory.guardarMemoOficio = function(data){
+    dataFactory.guardarMemoOficio = function(data, apiToken){
         return $http.post(restUrl + '/store/memos-oficios', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
@@ -119,14 +122,14 @@ angular.module('mobieApp')
     }
     
     // Consultas
-    dataFactory.consultarCorrespondencia = function(data) {
+    dataFactory.consultarCorrespondencia = function(data, apiToken) {
         return $http.post(restUrl + '/get/consultas/correspondencia', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform
         });
     }
     
-    dataFactory.consultarMemosOficios = function(data) {
+    dataFactory.consultarMemosOficios = function(data, apiToken) {
         return $http.post(restUrl + '/get/consultas/memos-oficios', data, {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transform

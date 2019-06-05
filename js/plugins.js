@@ -19,8 +19,13 @@ angular.module("mobieApp")
     this.getUserId = function() {
         return $("#userId").val();
     }
-    
-    
+   
+    this.apiToken = $("#apiToken").val();
+  
+    this.isLogged = function() {
+        return $("#apiToken").length === 1;
+    }
+     
     this.preloadingIn = function() 
     {
         $(".container-preloading").fadeIn("slow");

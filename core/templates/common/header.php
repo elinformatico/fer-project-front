@@ -56,7 +56,11 @@
 <?php else: ?>
     <body>
 <?php endif; ?>
-      
+
+<?php if (isSessionActive()) : ?>
+  <input type="hidden" id="apiToken" value="<?php echo $_SESSION["apiToken"]  ?>" />
+<?php endif; ?>
+
 <!-- Preloading HTML-->
 <div class="container-preloading">
 	<div class="row"> 

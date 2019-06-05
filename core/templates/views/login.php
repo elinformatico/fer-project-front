@@ -24,6 +24,10 @@
       <?php if(isset($_REQUEST['error'])) : ?>
           <div class="alert alert-danger" role="alert" style="margin-top: 20px;"><?php echo $_REQUEST['error']; ?></div>
       <?php endif; ?>
+    
+       <?php if(isExpiredSessionFromURL()) : ?>
+          <div class="alert alert-danger" role="alert" style="margin-top: 20px;">La sesion ha caducado! <br /> Porfavor introduzca sus credenciales e inicie sesion nuevamente!</div>
+      <?php endif; ?>
 
   </form>
 </div>

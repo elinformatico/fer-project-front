@@ -41,6 +41,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     // SCOPE DE FUNCIONES
     $scope.fn = {
         init : function(){
+          
+            console.log('Is Logged -->', plugins.isLogged());
+          
             this.loadDepartamentos();
             this.loadDirigidoA();
             this.loadDependencias();
@@ -52,7 +55,9 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
         },
         loadDepartamentos : function(){
             // console.log('Loading departamentos...');
-            apiFactoryRest.getDepartamentos()
+          
+            if(plugins.isLogged()) {
+                apiFactoryRest.getDepartamentos()
                 .success(function(rs){
 
                     if(rs.status === 'success'){
@@ -65,12 +70,15 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 .error(function(err){
                     growlService.error('Mensaje Sistema', err);
                 });
+            }
         },
         loadDirigidoA : function() {
             // console.log('Loading usuarios de Dirigo A...');
-            apiFactoryRest.getNombreUsuarios()
+            
+            if(plugins.isLogged()) {
+                apiFactoryRest.getNombreUsuarios(plugins.apiToken)
                 .success(function(rs){
-
+                    console.log("Complete Response: ", rs);
                     if(rs.status === 'success'){
                         $scope.usuarios = rs.usuarios;
 
@@ -79,12 +87,16 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     }
                 })
                 .error(function(err){
-                    growlService.error('Mensaje Sistema', err);
+                    console.log('Error Ajax: ', err);
+                    growlService.error('Mensaje Sistema', err.msg);
                 });
+            }
+            
         },
         loadDependencias : function() {
             // console.log('Loading dependencias...');
-            apiFactoryRest.getDependencias()
+            if(plugins.isLogged()) {
+                apiFactoryRest.getDependencias()
                 .success(function(rs){
 
                     if(rs.status === 'success'){
@@ -97,6 +109,8 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 .error(function(err){
                     growlService.error('Mensaje Sistema', err);
                 });
+            }
+            
         },
         guardar : function() {
 
