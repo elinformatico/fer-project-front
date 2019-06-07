@@ -8,8 +8,8 @@ angular.module('mobieApp', ['ui.bootstrap'])
 
 	// PRODUCTION
 	// -----------------------------------------------------------
-	apiRouteProduction  : 'https://elinformatico.net/fer.project/api/public',
-    siteRouteProduction : 'https://elinformatico.net/fer.project/section/login'
+	apiRouteProduction  : 'https://elinformatico.net/fnz/api/public',
+    siteRouteProduction : 'https://elinformatico.net/fnz/section/login'
 })
 .run(function($rootScope, globalServerRoute)
 {
