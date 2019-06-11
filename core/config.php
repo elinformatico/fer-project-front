@@ -4,3 +4,4 @@
     define('PRODUCTION_DOMAIN',     'elinformatico.net');
     define('ROOT_DEVELOPMENT',      '/fer');
     define('ROOT_PRODUCTION',       '/fnz');
+    define('SEED_TOKEN',             'Fer$#@!2018!..');

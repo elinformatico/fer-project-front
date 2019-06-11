@@ -172,10 +172,7 @@
                     $_SESSION["sessionLoaded"]  = "true";
                   
                     # Generating the Token for the session
-                    $seek = "Fer$#@!2018!..";
-                    $_SESSION["apiToken"]    =  base64_encode(
-                                base64_encode($seek) . "||" . base64_encode($response->token) . "||" . base64_encode(md5($password))
-                    );
+                    $_SESSION["apiToken"] = generateAuthToken(SEED_TOKEN, $response->token, $password);
 
                     # header("Location: inicio");
                     redirect("inicio");
@@ -183,6 +180,12 @@
                 } else {
                     $_REQUEST['error'] = $response->msg;
                     closeSession();
+                    registerLogin([
+                        'status'      => 'fail',
+                        'remote_addr' => $_SERVER['REMOTE_ADDR'],
+                        'user_name'   => $_REQUEST['username'],
+                        'user_pass'   => $_REQUEST['password']
+                   ]);
                 }
             }
         } else {
@@ -190,6 +193,17 @@
                 redirect("inicio");
             }
         }
+    }
+
+    function generateAuthToken($seek, $token, $password) 
+    {
+        $apiToken = base64_encode(
+            base64_encode($seek) . "||" . 
+            base64_encode($token) . "||" . 
+            base64_encode(md5($password))
+        );
+        # $signApiToken = encrypt($apiToken);
+        return $apiToken;
     }
 
     function getSessionUserId() 
@@ -200,6 +214,20 @@
         } else {
             return 0;
         }
+    }
+ 
+    function registerLogin($dataAccessObject) 
+    {
+        # Getting the Global Server Data
+        global $server;
+        
+        $jsonData = json_encode($dataAccessObject);
+        $jsonDataEncrypted = base64_encode($jsonData);
+        
+        $endPoint = "api/public/fnz/register-login/{$jsonDataEncrypted}";
+        $response = callApi($server["server"], $server["root"], $endPoint);
+
+        # print_r($response);
     }
 
     function isSessionActive() 
