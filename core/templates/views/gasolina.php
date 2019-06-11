@@ -12,6 +12,9 @@
                 <option value="" selected>-- Selecciona un Vehículo --</option>
                 <option ng-repeat="car in cars" value="{{car.car_id}}">{{car.car_alias}}</option>
             </select>
+            <p style="padding-top:10px;">
+                {{msgUltimoKilometraje}}
+            </p>
         </div>
 
         <div class="form-group">

@@ -13,6 +13,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     // Datos por default
     $scope.tipoGasolina = 'magna';
     $scope.ultimoKilometraje = '0';
+    $scope.msgUltimoKilometraje = '';
     $scope.selectedPaymentMethod = '';
     // $scope.textSelectedPaymentMethod = '';
     $scope.mostrarBancos = false;
@@ -133,15 +134,16 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 apiFactoryRest.getMaximoKilometraje(carId, plugins.apiToken)
                 .success(function(rs){              
                     if(rs.status === 'success'){
-                        $scope.ultimoKilometraje = rs.kilometraje;
-                        $scope.kilometraje = parseInt(rs.kilometraje);
+                        $scope.ultimoKilometraje = rs.ultimoKilometraje;
+                        $scope.kilometraje = parseInt(rs.ultimoKilometraje);
+                        $scope.msgUltimoKilometraje = rs.ultimoRegistro;
 
                     } else if(rs.status === 'error'){
-                        $scope.ultimoKilometraje = 'Error Sistema';
+                        $scope.ultimoKilometraje = rs.msg;
                     }
                 })
                 .error(function(err){
-                    $scope.ultimoKilometraje = 'Error Conexión';
+                    $scope.ultimoKilometraje = err.msg;
                 });   
             }
         },
@@ -165,6 +167,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
 
                         $scope.kilometraje = '';
                         $scope.ultimoKilometraje = '0';
+                        $scope.msgUltimoKilometraje = '';
                         $scope.litros = '';
                         $scope.tipoGasolina = 'magna';
                         $scope.montoGasolina = '';
@@ -184,12 +187,12 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
         guardarLogFinanzas : function() 
         {
             $scope.datos = {
-                log_user_id : 0,
+                log_user_id     : plugins.getUserId(),
                 log_description : 'Carga de ' + $scope.litros + ' litros de Gasolina ' + $scope.tipoGasolina,
                 log_amount      : $scope.montoGasolina,
                 log_cat_id_fk   : '8', // Categoria --> Gasolina/Combustible
                 log_pmt_id_kf   : $scope.selectedPaymentMethod,
-                // Si se muestra bancos, que mande su ID, en caso contrario, que mande 1, que no aplica
+                // Si se muestra bancos, que mande su ID, en caso contrario, que mande 1, que significa "No aplica"
                 log_bank_id_fk  : ($scope.mostrarBancos) ? $scope.selectedBank : 1
             }
             
