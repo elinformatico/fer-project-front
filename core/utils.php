@@ -123,19 +123,6 @@
         return $responseData;
     }
 
-    function getAuthUserData($token) {
-
-        $splitData = explode("|", $token);
-        $returnDataUser = [
-            "userId"        => base64_decode($splitData[0]),
-            "userName"      => base64_decode($splitData[1]),
-            "fullName"      => base64_decode($splitData[2]),
-            "role"          => base64_decode($splitData[3]),
-            "dateExpired"   => base64_decode($splitData[4]),
-        ];
-        return $returnDataUser;
-    }
-
     function closeSession() {
         session_unset();
         session_destroy(); 
@@ -162,19 +149,18 @@
 
                 if(isset($response->status) && $response->status == "success") 
                 {
-                    $dataUser = getAuthUserData($response->token);
+                    $dataUser = $response->usuario;
 
-                    $_SESSION["userId"]         = $dataUser["userId"];
-                    $_SESSION["userName"]       = $dataUser["userName"];
-                    $_SESSION["fullName"]       = $dataUser["fullName"];
-                    $_SESSION["role"]           = $dataUser["role"];
-                    $_SESSION["dateExpired"]    = $dataUser["dateExpired"];
+                    $_SESSION["userId"]         = $dataUser->userId;
+                    $_SESSION["userName"]       = $dataUser->userName;
+                    $_SESSION["fullName"]       = $dataUser->fullName;
+                    $_SESSION["role"]           = $dataUser->role;
+                    # $_SESSION["dateExpired"]    = $dataUser["dateExpired"];
                     $_SESSION["sessionLoaded"]  = "true";
                   
-                    # Generating the Token for the session
-                    $_SESSION["apiToken"] = generateAuthToken(SEED_TOKEN, $response->token, $password);
-
-                    # header("Location: inicio");
+                    # Getting the Token of the session
+                    $_SESSION["apiToken"] = $response->token;
+                    
                     redirect("inicio");
 
                 } else {
@@ -195,25 +181,9 @@
         }
     }
 
-    function generateAuthToken($seek, $token, $password) 
-    {
-        $apiToken = base64_encode(
-            base64_encode($seek) . "||" . 
-            base64_encode($token) . "||" . 
-            base64_encode(md5($password))
-        );
-        # $signApiToken = encrypt($apiToken);
-        return $apiToken;
-    }
-
     function getSessionUserId() 
     {  
-        $seek = "Fer$#@!2018!..";
-        if(isset($_SESSION["userId"])) {
-            return base64_encode($seek . "|" . $_SESSION["userId"]);
-        } else {
-            return 0;
-        }
+        return (isset($_SESSION["userId"])) ? $_SESSION["userId"] : 0;
     }
  
     function registerLogin($dataAccessObject) 
