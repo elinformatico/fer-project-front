@@ -40,8 +40,8 @@
             "name"              => "gasolina",
             "menuLabel"         => "Gasolina",
             "angularController" => "registroGasolinaCtrl",
-            "nameSection"       => "Ejemplo Funcional",
-            "showInMenu"        => "no",
+            "nameSection"       => "Registrar Gasolina",
+            "showInMenu"        => "yes",
             "permissions"       => [
                 #"user",
                 "admin",
@@ -52,7 +52,7 @@
             "menuLabel"         => "Log Financiero",
             "angularController" => "financialLogCtrl",
             "nameSection"       => "Registro de Gastos / Ingresos",
-            "showInMenu"        => "no",
+            "showInMenu"        => "yes",
             "permissions"       => [
                 "admin",
             ]
@@ -62,7 +62,7 @@
             "menuLabel"         => "Memos",
             "angularController" => "memosCtrl",
             "nameSection"       => "Administrar Memos",
-            "showInMenu"        => "yes",
+            "showInMenu"        => "no",
             "permissions"       => [
                 "admin",
                 "user",
@@ -74,7 +74,7 @@
             "menuLabel"         => "Oficios",
             "angularController" => "oficiosCtrl",
             "nameSection"       => "Administrar Oficios",
-            "showInMenu"        => "yes",
+            "showInMenu"        => "no",
             "permissions"       => [
                 "admin",
                 "user",

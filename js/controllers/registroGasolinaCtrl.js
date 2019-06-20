@@ -124,7 +124,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     }
                 })
                 .error(function(err){
-                    growlService.error('Mensaje Sistema', err);
+                    growlService.error('Mensaje Sistema', err.msg);
                 });
             }
         },
@@ -178,7 +178,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                     }
                 })
                 .error(function(err){
-                    growlService.error('Mensaje Sistema', err);
+                    growlService.error('Mensaje Sistema', err.msg);
                 });
             } else {
                 growlService.warning('Mensaje Sistema', '¡Por favor llene todos los campos!');
@@ -209,7 +209,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 }
             })
             .error(function(err){
-                growlService.error('Mensaje Sistema', err);
+                growlService.error('Mensaje Sistema', err.msg);
             });
         }
     };
