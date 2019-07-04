@@ -43,4 +43,25 @@ angular.module("mobieApp")
         else 
             return confirm("¿Todos los datos son correctos para continuar? Se procederá a guardar la información capturada.");
     }
+    
+    this.loadModal = function(params) 
+    {
+        var modalInstance = params.uibModal.open({
+            animation: true,
+            templateUrl : params.template,
+            controller  : 'modalWindowCtrl.js',
+            size        : 'lg',
+            backdrop    : 'static',
+            keyboard    : false,
+            resolve     : {
+                Data: function() {
+                    return { 
+                        title : params.title,
+                        data : params.data,
+                        type : 'modal'
+                    };
+                }
+            }
+        });
+    }
 });

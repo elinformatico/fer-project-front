@@ -213,25 +213,16 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             });
         },
         showDetails : function() {
-            console.log("Show details..");
             
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl : 'gasolina.summary.html',
-                controller  : 'modalWindowCtrl.js',
-                size        : 'lg',
-                backdrop    : 'static',
-                keyboard    : false,
-                resolve     : {
-                    Data: function() {
-                        return { 
-                            data : {
-                                name : 'Volver al Futuro',
-                                director : 'Roberto Zemeckis'
-                            },
-                            type : 'modal'
-                        };
-		            }
+            console.log("Show details!");
+
+            plugins.loadModal({
+                uibModal    : $uibModal,
+                title       : 'Informacion del Vehiculo',
+                template    : 'gasolina.summary.html',
+                data        : {
+                    name : 'Volver al Futuro',
+                    director : 'Roberto Zemeckis'
                 }
             });
         }
