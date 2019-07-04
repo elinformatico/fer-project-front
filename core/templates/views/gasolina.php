@@ -36,6 +36,15 @@
                 <span class="input-group-addon">$</span>
                 <input type="number" class="form-control" id="montoGasolina" ng-model='montoGasolina' required>
             </div>
+            <p style="padding-top:10px;">
+                En este mes de [NOMBRE_MES] has gastado $ [MONTO] Pesos MXN en este Vehiculo <br />
+                    <button 
+                    type="button" 
+                    class="btn btn-info btn-sm" 
+                    ng-click='fn.showDetails()'>
+                        Ver mas detalles
+                    </button>
+            </p>
         </div>
 
         <div class="form-group">
@@ -70,4 +79,5 @@
         </div>
     </form>
 </div>
+<?php include_once "core/templates/views/modal.views/gasolina.summary.html" ?>
 <!-- Don't close the <body> and <html>  tags, these tags are already include by the PHP System -->

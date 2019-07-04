@@ -3,7 +3,7 @@ angular.module("mobieApp")
          ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
 function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins ) {
 
-    console.log('Controller: --> registroGasolinaCtrl :)');
+    console.log('Controller: --> registroGasolinaCtrl!!');
   
     // Datos obtenidos de la Base de Datos
     $scope.cars = {};
@@ -210,6 +210,29 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
             })
             .error(function(err){
                 growlService.error('Mensaje Sistema', err.msg);
+            });
+        },
+        showDetails : function() {
+            console.log("Show details..");
+            
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl : 'gasolina.summary.html',
+                controller  : 'modalWindowCtrl.js',
+                size        : 'lg',
+                backdrop    : 'static',
+                keyboard    : false,
+                resolve     : {
+                    Data: function() {
+                        return { 
+                            data : {
+                                name : 'Volver al Futuro',
+                                director : 'Roberto Zemeckis'
+                            },
+                            type : 'modal'
+                        };
+		            }
+                }
             });
         }
     };

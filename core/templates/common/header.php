@@ -40,6 +40,9 @@
   <script src="<?php echo $pageData['app_base']; ?>/js/growlService.js"></script>
   <script src="<?php echo $pageData['app_base']; ?>/js/plugins.js"></script>
 
+  <!-- Modal Window Controller -->
+  <script src="<?php echo $pageData['app_base']; ?>/js/controllers/modalWindowCtrl.js"></script>
+  
   <!-- Modules & Angular Controllers -->
   <!-- ================================================================================= -->
   <script src="<?php echo $pageData['app_base']; ?>/js/webservices/apiFactoryRest.js"></script>

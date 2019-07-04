@@ -1,18 +1,14 @@
 angular.module("mobieApp")
-.controller('displayMovieModalCtrl', 
+.controller('modalWindowCtrl.js', 
     ['$scope','$uibModalInstance','Data','$compile','$rootScope', function(
       $scope , $uibModalInstance , Data , $compile , $rootScope ) {
         
-        $scope.movie = {
-            info  : Data.datosPelicula,
-            actors : Data.actors
-        }
+        $scope.modalData = Data;
 
         $scope.modal = {
             cerrar : function(){
                 $uibModalInstance.close('cancel');
             }
         }
-
-        console.log('Se abrio modal con los siguientes datos: ', $scope.movie );
+        console.log('Se abrio modal con los siguientes datos: ', $scope.modalData );
 }])
