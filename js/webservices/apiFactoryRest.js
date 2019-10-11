@@ -61,6 +61,12 @@ angular.module('mobieApp')
              headers : { 'token': apiToken},
         });
     }
+    
+    dataFactory.getGastoMensual = function(carId, apiToken){
+        return $http.get( restUrl + '/fnz/get/gasto-mensual/' + carId, {
+             headers : { 'token': apiToken},
+        });
+    }
 
     dataFactory.storeGasolina = function(data, apiToken){
       return $http.post(restUrl + '/fnz/registrar/gasolina', data, {

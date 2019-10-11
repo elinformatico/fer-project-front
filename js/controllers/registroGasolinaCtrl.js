@@ -3,7 +3,7 @@ angular.module("mobieApp")
          ["$rootScope","$scope","$http","$compile","$q","$uibModal","$log","apiFactoryRest","growlService", "plugins",  
 function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiFactoryRest,  growlService, plugins ) {
 
-    console.log('Controller: --> registroGasolinaCtrl!!');
+    console.log('Controller: --> registroGasolinaCtrl....!');
   
     // Datos obtenidos de la Base de Datos
     $scope.cars = {};
@@ -14,6 +14,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
     $scope.tipoGasolina = 'magna';
     $scope.ultimoKilometraje = '0';
     $scope.msgUltimoKilometraje = '';
+    $scope.msgGastoMensual = "";
     $scope.selectedPaymentMethod = '';
     // $scope.textSelectedPaymentMethod = '';
     $scope.mostrarBancos = false;
@@ -31,6 +32,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
         {
             console.log("Selecting the carId", carId);
             $scope.fn.getKilometraje(carId);
+            $scope.fn.getGastoMensual(carId);
             $scope.kilometraje = '';
         },
         changeMethod : function(paymentMethod)
@@ -147,6 +149,23 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                 });   
             }
         },
+        getGastoMensual : function(carId) {
+            if(plugins.isLogged()) {
+                apiFactoryRest.getGastoMensual(carId, plugins.apiToken)
+                .success(function(rs){              
+                    if(rs.status === 'success'){
+                        
+                        $scope.msgGastoMensual = rs.msg;
+                        
+                    } else if(rs.status === 'error'){
+                        $scope.msgGastoMensual = rs.msg;
+                    }
+                })
+                .error(function(err){
+                    $scope.msgGastoMensual = err.msg;
+                });   
+            }
+        },
         guardar : function() 
         {    
             $scope.datos = {
@@ -168,6 +187,7 @@ function ( $rootScope,  $scope,  $http,  $compile,  $q,  $uibModal,  $log,  apiF
                         $scope.kilometraje = '';
                         $scope.ultimoKilometraje = '0';
                         $scope.msgUltimoKilometraje = '';
+                        $scope.msgGastoMensual = '';
                         $scope.litros = '';
                         $scope.tipoGasolina = 'magna';
                         $scope.montoGasolina = '';

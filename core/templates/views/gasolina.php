@@ -37,7 +37,7 @@
                 <input type="number" class="form-control" id="montoGasolina" ng-model='montoGasolina' required>
             </div>
             <p style="padding-top:10px;">
-                En este mes de [NOMBRE_MES] has gastado $ [MONTO] Pesos MXN en este Vehiculo <br />
+                {{msgGastoMensual}} <br /><br />
                     <button 
                     type="button" 
                     class="btn btn-info btn-sm" 
