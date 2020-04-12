@@ -1,4 +1,4 @@
-- Instalacion y Coniguracion del Proyecto para produccion
+- Instalacion y Configuracion del Proyecto para produccion
 
 1) Modificar el archivo core/config 
 
@@ -26,5 +26,8 @@ definir el directorio como en el ejemplo "/fer.project"
 apiRouteProduction  : 'http{s}:{domain | directory}/api/public',
 siteRouteProduction : 'http{s}:{domain | directory}/section/login'
 
-4) Si esta usando "CloudFare" purgar y poner en modo "Development" para ver los cambios en tiempo real.
+4) Instalar los Plugins en la carpeta de "vendor" ubicado en: /var/www/{domain}/httpdocs/{directory}/js/vendor
+$ git clone git@github.com:elinformatico/vendor-js-plugins.git ./
+
+5) Si esta usando "CloudFare" purgar y poner en modo "Development" para ver los cambios en tiempo real.
 Una vez finalizado el desarrollo, desactivar el modo "Development" en la seccion de "Caching".
