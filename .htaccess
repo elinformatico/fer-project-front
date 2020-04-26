@@ -4,6 +4,6 @@
 	RewriteRule ^index\.php$ - [L]
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^section/([a-zA-Z0-9]+)*$ ./index.php?id=$1
+	RewriteRule ^section/([a-zA-Z0-9\\-]+)*$ ./index.php?id=$1
 </IfModule>
 ErrorDocument 404 /404.html
