@@ -3,7 +3,7 @@
 <head>
   <title><?php echo $pageData['nameSection']; ?></title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="shortcut icon" href="<?php echo $pageData['app_base']; ?>/favicon.ico" type="image/x-icon">
   <link rel="icon" href="<?php echo $pageData['app_base']; ?>/favicon.ico" type="image/x-icon">
@@ -11,14 +11,23 @@
   <!-- ================================================================================= -->
   <script src="<?php echo $pageData['app_base']; ?>/js/vendor/angular/angular.min.js"></script>
   <!-- ================================================================================= -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">  
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+          crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
-  
+  <!-- Font Awesome CSS -->
+  <link href="<?php echo $pageData['app_base']; ?>/js/vendor/font-awesome-v5/css/all.css" rel="stylesheet"> 
+    
   <script src="<?php echo $pageData['app_base']; ?>/js/vendor/animate/angular-animate.min.js"></script>
   <!-- Bootstrap angular-->
   <script src="<?php echo $pageData['app_base']; ?>/js/vendor/angularbootstrap-ui/ui-bootstrap-tpls-0.14.3.min.js"></script>
@@ -29,6 +38,9 @@
 
   <!-- Preloading -->
   <link rel="stylesheet" href="<?php echo $pageData['app_base']; ?>/js/plugins/preloading/preloading.css">
+    
+  <!-- Submenu Controller -->
+  <script src="<?php echo $pageData['app_base']; ?>/js/plugins/bootstrap-submenu/submenu-ctrl.js"></script>
   
   <!-- ================================================================================= -->
   <script src="<?php echo $pageData['app_base']; ?>/js/app.js"></script>
@@ -74,5 +86,5 @@
 </div>
 
 <input type="hidden" id="userId" value="<?php echo getSessionUserId(); ?>" />
-<!-- Navigation Menu start here -->
+<!-- Navigation Menu start below here -->
 

@@ -63,8 +63,8 @@
     {
         global $pages;
         include_once "core/templates/common/header.php";
-        include_once "core/templates/common/menu.php";
-        # include_once "core/templates/common/menu-school.php";
+        # include_once "core/templates/common/menu.php";
+        include_once "core/templates/common/menu-school.php";
         
         if(isSessionActive()) {
 
