@@ -12,7 +12,10 @@
     $server['server'] = strstr($_SERVER['HTTP_HOST'], 'localhost') ? DEVELOPMENT_SERVER : PRODUCTION_SERVER;
     $server['root'] = strstr($_SERVER['HTTP_HOST'], 'localhost') ? ROOT_DEVELOPMENT : ROOT_PRODUCTION;;
 
-    $section  = str_replace($server['root'] . "/section/", "", $_SERVER['REDIRECT_URL']);
+    $section  = str_replace(
+            $server['root'] . "/section/", 
+            "", 
+            isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : "");
 
     # This section load the corresponding Page
     if(exitsPage($pages, $section)) 

@@ -38,19 +38,23 @@
         }
         return $exits;
     }
-
-    function generateMenu($pagesArray, $name) {   
-
+    
+    function generateMenuByUser($pagesArray, $name, $userSession) 
+    {
         foreach ($pagesArray as $value) 
-        {   
-            if($value['showInMenu'] == "yes")
+        {         
+            $menuPermission = $value["permissions"];
+            if(in_array($userSession["role"], $menuPermission)) 
             {
-                if($value['name'] == $name) 
+                if($value['showInMenu'] == "yes")
                 {
-                    echo "<li class='active'><a href='{$value['name']}'>{$value['menuLabel']}</a></li>";
-                } else {
-                    echo "<li><a href='{$value['name']}'>{$value['menuLabel']}</a></li>";
-                }
+                    if($value['name'] == $name) 
+                    {
+                        echo "<li class='active'><a href='{$value['name']}'>{$value['menuLabel']}</a></li>";
+                    } else {
+                        echo "<li><a href='{$value['name']}'>{$value['menuLabel']}</a></li>";
+                    }        
+                }          
             }
         }
     }
@@ -59,6 +63,9 @@
     {
         global $pages;
         include_once "core/templates/common/header.php";
+        include_once "core/templates/common/menu.php";
+        # include_once "core/templates/common/menu-school.php";
+        
         if(isSessionActive()) {
 
             # Permission for this Page

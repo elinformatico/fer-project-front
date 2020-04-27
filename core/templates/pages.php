@@ -1,15 +1,16 @@
 <?php
     $pages = [
         [
-            "name"              => "login",
-            "menuLabel"         => "Login",
-            "angularController" => "noController",
-            "nameSection"       => "Iniciar Sesion",
-            "showInMenu"        => "no",
+            "name"              => "login",             # URL Name
+            "menuLabel"         => "Login",             # Name in the Menu
+            "angularController" => "noController",      # Name Angular Controller
+            "nameSection"       => "Iniciar Sesion",    # Tab Name (Title Pagle)
+            "showInMenu"        => "no",                # Show in menu
             "permissions"       => [
                 "admin",
                 "user",
                 "basic",
+                "school-admin",
             ]
         ],
          [
@@ -22,6 +23,7 @@
                 "admin",
                 "user",
                 "basic",
+                "school-admin",
             ]
         ],
         [
@@ -34,6 +36,7 @@
                 "admin",
                 "user",
                 "basic",
+                "school-admin",
             ]
         ],
         [
@@ -62,7 +65,7 @@
             "menuLabel"         => "Memos",
             "angularController" => "memosCtrl",
             "nameSection"       => "Administrar Memos",
-            "showInMenu"        => "no",
+            "showInMenu"        => "yes",
             "permissions"       => [
                 "admin",
                 "user",
@@ -74,7 +77,7 @@
             "menuLabel"         => "Oficios",
             "angularController" => "oficiosCtrl",
             "nameSection"       => "Administrar Oficios",
-            "showInMenu"        => "no",
+            "showInMenu"        => "yes",
             "permissions"       => [
                 "admin",
                 "user",
@@ -99,7 +102,8 @@
             "nameSection"       => "Administrar Usuarios",
             "showInMenu"        => "yes",
             "permissions"       => [
-                "admin"
+                "admin",
+                "school-admin",
             ]
         ],
         [
@@ -135,6 +139,29 @@
             "permissions"       => [
                 "user",
                 "basic",
+                "school-admin",
             ]
-        ]
+        ],
+        
+        # Secciones del Menu
+        [
+            "name"              => "asistente-captura-personal",    # URL Name
+            "menuLabel"         => "Asistente de Captura de Personal",    # Name in the Menu
+            "angularController" => "asistenteCapturaPersonalCtrl",  # Name Angular Controller 
+            "nameSection"       => "Asistente Captura Personal",    # Tab Name (Title Pagle)
+            "showInMenu"        => "yes",                           # Show in menu
+            "permissions"       => [
+                "school-admin",
+            ]    
+        ],
+        [
+            "name"              => "personal",                      # URL Name
+            "menuLabel"         => "Registro Personal",             # Name in the Menu
+            "angularController" => "registroPersonalCtrl",          # Name Angular Controller 
+            "nameSection"       => "Personal / Datos Generales",    # Tab Name (Title Pagle)
+            "showInMenu"        => "yes",                           # Show in menu
+            "permissions"       => [
+                "school-admin",
+            ]    
+        ],
     ];
